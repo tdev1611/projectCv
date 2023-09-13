@@ -17,8 +17,15 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone')->unique();
+            $table->decimal('balance', 8, 2)->default(5000);
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('ip_address')->nullable();
             $table->string('password');
+            $table->string('referral_code')->unique()->comment('mã giới thiệu');
+            $table->string('referrer_code')->nullable()->comment('mã người giới thiệu');
+            $table->tinyInteger('role')->default(1);
+            $table->tinyInteger('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });
