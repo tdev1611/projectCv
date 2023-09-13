@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 
@@ -23,7 +20,3 @@ Route::get('/', function () {
 //     include 'admin.php';
 // });
 
-
-Route::group(['prefix' => 'admin'], function () {
-    include 'admin.php';
-});

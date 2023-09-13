@@ -48,7 +48,7 @@
             <!--end::Toolbar container-->
             {{-- alert --}}
             {{-- component alert --}}
-            <x-admin.alert-notification />
+            {{-- <x-admin.alert-notification /> --}}
         </div>
         <div class="lg-12 py-3 container">
             <div class="container-fluid">
