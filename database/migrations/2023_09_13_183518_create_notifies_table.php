@@ -16,7 +16,7 @@ class CreateNotifiesTable extends Migration
         Schema::create('notifies', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('desc');
+            $table->text('content');
             $table->tinyInteger('status')->comment('1: hiển thị; 2: ẩn');
             $table->timestamps();
         });
