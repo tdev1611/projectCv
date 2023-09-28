@@ -1,16 +1,6 @@
 @extends('admin.layout')
 @section('content')
-    <style>
-        #delete:hover {
-            color: red;
-            padding: 5px
-        }
-
-        #update:hover {
-            color: greenyellow;
-            padding: 5px
-        }
-    </style>
+    
 
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->

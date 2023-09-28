@@ -183,7 +183,7 @@
                     <!--end::Svg Icon-->
                 </span>
                 <span class="menu-title">
-                    <h5 style="color:gray">Danh sách rút tiền</h5>
+                    <h5 style="color:gray">Sản phẩm</h5>
                 </span>
                 <span class="menu-arrow"></span>
             </span>
@@ -194,11 +194,36 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="">
+                    <a class="menu-link" href="{{ route('admin.category-products.index') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
-                        <span class="menu-title">Rút tiền</span>
+                        <span class="menu-title">Danh mục sản phẩm</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.products.create') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Thêm sản phẩm</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.products.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Danh sách sản phẩm</span>
                     </a>
                     <!--end:Menu link-->
                 </div>
@@ -221,7 +246,7 @@
                     <!--end::Svg Icon-->
                 </span>
                 <span class="menu-title">
-                    <h5 style="color:gray">Danh sách nạp tiền</h5>
+                    <h5 style="color:gray">Màu sắc - Sizes sản phẩm</h5>
                 </span>
                 <span class="menu-arrow"></span>
             </span>
@@ -232,14 +257,28 @@
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link" href="">
+                    <a class="menu-link" href="{{ route('admin.colors.index') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
-                        <span class="menu-title">Nạp tiền</span>
+                        <span class="menu-title">Danh sách màu </span>
                     </a>
                     <!--end:Menu link-->
                 </div>
+                <!--begin:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.sizes.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Danh sách Sizes </span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--begin:Menu item-->
+
                 <!--end:Menu item-->
             </div>
             <!--end:Menu sub-->

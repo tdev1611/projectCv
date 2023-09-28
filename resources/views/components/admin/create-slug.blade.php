@@ -1,5 +1,5 @@
 <script>
-    $('input#title').keyup(function(event) {
+    $('input#name').keyup(function(event) {
         var title, slug;
         //Lấy text từ thẻ input title 
         title = $(this).val();

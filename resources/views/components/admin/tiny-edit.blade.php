@@ -3,7 +3,7 @@
 
 <script>
     tinymce.init({
-        selector: '#content',
+        selector: '#detail',
         plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount image code preview',
         toolbar: 'undo redo | blocks fontfamily fontsize | preview| bold italic underline strikethrough | link image media table | code | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
         image_title: true,
