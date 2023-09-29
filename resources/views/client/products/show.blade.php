@@ -109,13 +109,12 @@
                                 </a>
                                 <a :href="productDetailRoute.replace(':slug', item.slug)" title=""
                                     class="product-name">@{{ item.name }}</a>
+
                                 <div class="price" v-if="item.discount >0">
 
-                                    <span class="new">
-                                        @{{ item.price - Math.round((item.discount * item.price) / 100) }}$
-                                    </span>
-                                    <span class="old">@{{ new Intl.NumberFormat("de-DE").format(item.price) }}$</span>
+                                    <span class="new">@{{ new Intl.NumberFormat("de-DE").format(product.price - Math.round((product.discount * product.price) / 100)) }}$</span>
 
+                                    <span class="old">@{{ new Intl.NumberFormat("de-DE").format(item.price) }}$</span>
                                 </div>
                                 <div class="price" v-else>
                                     <span class="new">@{{ new Intl.NumberFormat("de-DE").format(item.price) }}$</span>
@@ -154,7 +153,6 @@
 @endsection
 
 @section('js')
-
     <script>
         var app = new Vue({
             el: '#productsRelated',

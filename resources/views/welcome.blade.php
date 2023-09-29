@@ -62,12 +62,7 @@
                         <h3 class="section-title">Sản phẩm nổi bật</h3>
                     </div>
                     <div class="section-detail">
-                        <ul class="list-item">
-                            @foreach ($productFreatures as $product)
-                                <x-client.product.foreach-product :product="$product" />
-                            @endforeach
-
-                        </ul>
+                        <x-client.product.for-by-vuejs :products="$productFreatures" />
                     </div>
                 </div>
                 @foreach ($parentCategories as $category)
@@ -76,11 +71,10 @@
                             <h3 class="section-title">{{ $category->name }}</h3>
                         </div>
                         <div class="section-detail">
-                            <ul class="list-item clearfix">
+                            <ul class="list-item clearfix" id="list_product">
                                 @foreach ($category->getProductsBycate() as $product)
                                     <x-client.product.foreach-product :product="$product" />
                                 @endforeach
-
                             </ul>
                         </div>
                     </div>
@@ -134,6 +128,4 @@
 @endsection
 
 @section('js')
-  
-  
 @endsection

@@ -20,6 +20,7 @@
     <script src="{{ asset('client/public/js/bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('client/public/js/carousel/owl.carousel.js') }}" type="text/javascript"></script>
     <script src="{{ asset('client/public/js/main.js') }}" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </head>
 
 <body>
@@ -248,7 +249,7 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script> --}}
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  
         @yield('js')
 </body>
 

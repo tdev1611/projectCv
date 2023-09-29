@@ -39,7 +39,8 @@ class ProductController extends Controller
     function showProducts($slug)
     {
         try {
-            return $this->product->productByCategory($slug);
+            $products = $this->product->productByCategory($slug);
+            return view('client.products.byCategory', compact('products'));
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());
         }
