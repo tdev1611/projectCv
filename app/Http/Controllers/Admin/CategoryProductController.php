@@ -58,8 +58,7 @@ class CategoryProductController extends Controller
     function delete($id)
     {
         try {
-            $color = $this->categoryService->find($id);
-            $color->delete();
+            $this->categoryService->delete($id);
             return back()->with('success', 'Successfully deleted');
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());

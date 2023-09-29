@@ -17,4 +17,24 @@ class CategoryProduct extends Model
         'prioty',
 
     ];
+
+    public function children()
+    {
+        return $this->hasMany(CategoryProduct::class, 'cat_parent')->where('status', 1);
+    }
+
+
+    function products()
+    {
+        return $this->hasMany(Product::class)->where('status', 1);
+    }
+
+    function getProductsBycate()
+    {
+        $products = $this->products;
+        foreach ($this->children as $child) {
+            $products = $products->merge($child->getProductsBycate());
+        }
+        return $products;
+    }
 }

@@ -69,8 +69,8 @@ class CategoryService
     function delete($id)
     {
         $category = $this->find($id);
-        $img_old = $category->image;
-        unlink($img_old);
-        return $category->delete();
+        $ids =  $category->children->pluck('id')->toArray();
+        $category->whereIn('id', $ids)->delete();
+        $category->delete();
     }
 }
