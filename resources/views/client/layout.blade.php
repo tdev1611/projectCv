@@ -81,7 +81,8 @@
                                     <ul class="list-cart">
                                         <li class="clearfix">
                                             <a href="" title="" class="thumb fl-left">
-                                                <img src="public/images/img-pro-11.png" alt="">
+                                                <img src="{{ asset('client/public/images/img-pro-11.png') }}"
+                                                    alt="">
                                             </a>
                                             <div class="info fl-right">
                                                 <a href="" title="" class="product-name">Sony Express
@@ -92,7 +93,8 @@
                                         </li>
                                         <li class="clearfix">
                                             <a href="" title="" class="thumb fl-left">
-                                                <img src="public/images/img-pro-23.png" alt="">
+                                                <img src="{{ asset('client/public/images/img-pro-23.png') }}"
+                                                    alt="">
                                             </a>
                                             <div class="info fl-right">
                                                 <a href="" title="" class="product-name">Laptop Lenovo
@@ -129,7 +131,7 @@
                                 chính sách ưu đãi cực lớn cho khách hàng có thẻ thành viên.</p>
                             <div id="payment">
                                 <div class="thumb">
-                                    <img src="public/images/img-foot.png" alt="">
+                                    <img src="{{ asset('client/public/images/img-foot.png') }}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -246,6 +248,7 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script> --}}
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
         @yield('js')
 </body>
 

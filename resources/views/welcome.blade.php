@@ -86,7 +86,7 @@
                     </div>
                 @endforeach
 
-        
+
             </div>
             <div class="sidebar fl-left">
                 <div class="section" id="category-product-wp">
@@ -105,7 +105,7 @@
                         <ul class="list-item">
                             <li class="clearfix">
                                 <a href="?page=detail_product" title="" class="thumb fl-left">
-                                    <img src="public/images/img-pro-13.png" alt="">
+                                    <img src="{{ asset('client/public/images/img-pro-13.png') }}" alt="">
                                 </a>
                                 <div class="info fl-right">
                                     <a href="?page=detail_product" title="" class="product-name">Laptop Asus A540UP
@@ -124,11 +124,16 @@
                 <div class="section" id="banner-wp">
                     <div class="section-detail">
                         <a href="" title="" class="thumb">
-                            <img src="public/images/banner.png" alt="">
+                            <img src="{{ asset('client/public/images/banner.png') }}" alt="">
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+  
+  
 @endsection

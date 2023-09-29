@@ -55,7 +55,14 @@
                                 <span class="title">Sản phẩm: </span>
                                 <span class="status">Còn hàng</span>
                             </div>
-                            <p class="price">{{ number_format($product->price, 0, ',', '.') }}$</p>
+                            @if ($product->discount == 0)
+                                <p class="price">{{ number_format($product->price, 0, ',', '.') }}$</p>
+                            @else
+                                <p class="price">
+                                    {{ number_format($product->price - ($product->discount * $product->price) / 100, 0, ',', '.') }}$
+                                </p>
+                            @endif
+
                             <div id="num-order-wp">
                                 <a title="" id="minus">
                                     <i class="fa fa-minus"> </i>
@@ -76,25 +83,48 @@
                         {!! $product->detail !!}
                     </div>
                 </div>
+
+
                 <div class="section" id="same-category-wp">
                     <div class="section-head">
                         <h3 class="section-title">Cùng chuyên mục</h3>
                     </div>
                     <div class="section-detail">
-                        <ul class="list-item">
+                        <ul class="list-item" id="productsRelated">
+                            <li v-for="(item, index) in productsRelated" :key="index">
+                                <div style="text-align: right" v-if="item.discount > 0">
+                                    <span
+                                        style="border-radius: 11px;  padding: 4px;   background: gold;          color:aliceblue">Giảm
+                                        @{{ new Intl.NumberFormat("de-DE").format(item.discount) }}%
+                                    </span>
+                                </div>
+                                <div style="text-align: right" v-else>
+                                    <span style="border-radius: 11px;  padding: 4px;  color:aliceblue">
 
-                            <li>
-                                <a href="" title="" class="thumb">
-                                    <img src="public/images/img-pro-23.png">
+                                    </span>
+                                </div>
+
+                                <a :href="productDetailRoute.replace(':slug', item.slug)" title="" class="thumb">
+                                    <img :src="'{{ url('') }}' + '/' + item.images" :alt="item.title">
                                 </a>
-                                <a href="" title="" class="product-name">Laptop HP Probook 4430s</a>
-                                <div class="price">
-                                    <span class="new">17.900.000đ</span>
-                                    <span class="old">20.900.000đ</span>
+                                <a :href="productDetailRoute.replace(':slug', item.slug)" title=""
+                                    class="product-name">@{{ item.name }}</a>
+                                <div class="price" v-if="item.discount >0">
+
+                                    <span class="new">
+                                        @{{ item.price - Math.round((item.discount * item.price) / 100) }}$
+                                    </span>
+                                    <span class="old">@{{ new Intl.NumberFormat("de-DE").format(item.price) }}$</span>
+
+                                </div>
+                                <div class="price" v-else>
+                                    <span class="new">@{{ new Intl.NumberFormat("de-DE").format(item.price) }}$</span>
                                 </div>
                                 <div class="action clearfix">
-                                    <a href="" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                    <a href="" title="" class="buy-now fl-right">Mua ngay</a>
+
+                                    <a :href="productDetailRoute.replace(':slug', item.slug)" title=""
+                                        class="buy-now " style="text-align:center">
+                                        Xem chi tiết</a>
                                 </div>
                             </li>
 
@@ -124,5 +154,19 @@
 @endsection
 
 @section('js')
-  
+
+    <script>
+        var app = new Vue({
+            el: '#productsRelated',
+            data: {
+                productsRelated: [],
+                productDetailRoute: @json(route('client.product.show', ['slug' => ':slug']))
+
+            },
+            mounted() {
+                this.productsRelated = {!! json_encode($productsRelate) !!};
+            },
+
+        });
+    </script>
 @endsection

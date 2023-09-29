@@ -24,8 +24,11 @@ class ProductController extends Controller
     {
         try {
             $product = $this->product->show($slug);
-              $list_images = json_decode($product->list_image, true);
-            return view('client.products.show', compact('product', 'list_images'));
+            $list_images = json_decode($product->list_image, true);
+
+            $category = $this->category->where('id', $product->category_product_id)->with('products')->first();
+            $productsRelate = $category->products->where('slug', '!=', $slug);
+            return view('client.products.show', compact('product', 'list_images', 'productsRelate'));
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());
         }

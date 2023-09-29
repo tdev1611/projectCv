@@ -37,7 +37,8 @@
 
     <div class="action clearfix">
 
-        <a href="{{ route('client.product.show', $product->slug) }}" title="" class="buy-now " style="text-align:center">
+        <a href="{{ route('client.product.show', $product->slug) }}" title="" class="buy-now "
+            style="text-align:center">
 
             Xem chi tiết</a>
     </div>
