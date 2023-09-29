@@ -43,6 +43,8 @@ class ProductController extends Controller
             if ($validator->fails()) {
                 throw new \Exception($validator->errors()->first());
             }
+            // code
+            $data['code'] =  'H-' . random_int(10000, 999999);
             // handle uploadImg
             $request->hasFile('images') ? $data['images'] = $this->productService
                 ->handleUploadedImage($request->file('images'), $request->slug) : null;
@@ -94,7 +96,7 @@ class ProductController extends Controller
             //sync
             $this->productService->sync($product);
 
-            return back()->with('success', 'Cập nhật sản phẩm thành công');
+            return redirect(route('admin.products.index'))->with('success', 'Cập nhật sản phẩm thành công');
         } catch (\Exception $e) {
             return back()->withErrors($validator)->with('error', $e->getMessage())->withInput();
         }
@@ -104,8 +106,8 @@ class ProductController extends Controller
     function delete($id)
     {
         try {
-            $size = $this->productService->find($id);
-            $size->delete();
+            $product = $this->productService->find($id);
+            $product->delete();
             return back()->with('success', 'Successfully deleted');
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());

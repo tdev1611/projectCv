@@ -9,7 +9,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        Thành viên</h1>
+                        Sản phẩm</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -34,9 +34,8 @@
                 </div>
             </div>
             <!--end::Toolbar container-->
-            {{-- alert --}}
-            {{-- component alert --}}
-            {{-- <x-admin.alert-notification /> --}}
+            {{--  alert --}}
+            <x-admin.alert-notify />
         </div>
         <div class="lg-12 py-3 container">
             <div class="container-fluid">
@@ -52,13 +51,14 @@
                                         <thead>
                                             <tr class="fw-bold fs-6 text-gray-800 px-7">
                                                 <th>#</th>
+                                                <th>Mã sản phẩm</th>
                                                 <th>Tên sản phẩm</th>
                                                 <th>Danh mục</th>
                                                 <th>Giá</th>
+                                                <th>Giảm giá</th>
                                                 <th>Ảnh</th>
                                                 <th>Màu sắc</th>
                                                 <th>Kích thước</th>
-                                                <th>Mô tả</th>
                                                 <th>Nổi bật</th>
                                                 <th>Trạng thái</th>
                                                 <th>Action</th>
@@ -74,9 +74,12 @@
                                                 @endphp
                                                 <tr>
                                                     <td>{{ $temp }}</td>
+                                                    <td><span class="badge bg-primary">{{ $product->code }}</span></td>
                                                     <td>{{ $product->name }}</td>
                                                     <td>{{ $product->category->name }}</td>
-                                                    <td>{{ $product->price }}</td>
+                                                    <td>{{ number_format($product->price, 0, ',', '.') }}$</td>
+                                                    <td>{{ $product->discount > 0 ? $product->discount . '%' : 0 . '%' }}
+                                                    </td>
                                                     <td>
                                                         <img src="{{ url($product->images) }}" height="100"
                                                             alt="{{ $product->name }}">
@@ -92,7 +95,7 @@
                                                         @endforeach
                                                     </td>
 
-                                                    <td> {!! Str::words($product->desc, 22, '...') !!}</td>
+                                    
 
 
                                                     @if ($product->features == 1)

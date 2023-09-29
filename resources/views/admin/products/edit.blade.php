@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col-12 ">
                         {{-- content --}}
-                        <form method="POST" id="formsize" action="{{ route('admin.products.update',$product->id) }}"
+                        <form method="POST" id="formsize" action="{{ route('admin.products.update', $product->id) }}"
                             enctype="multipart/form-data">
                             @method('put')
                             @csrf
@@ -156,6 +156,16 @@
                                     <input type="number" class="form-control" name="price" id="price"
                                         placeholder="price " value="{{ old('price', $product->price) }}">
                                     @error('price')
+                                        <small class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="discount" class="form-label"> Giảm giá </label>
+                                    <input type="number" class="form-control" name="discount" id="discount"
+                                        placeholder="discount " value="{{ old('discount', $product->discount) }}">
+                                    @error('discount')
                                         <small class="text-danger">
                                             {{ $message }}
                                         </small>

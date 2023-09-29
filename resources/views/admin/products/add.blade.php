@@ -121,6 +121,16 @@
                                         </small>
                                     @enderror
                                 </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="discount" class="form-label"> Giảm giá </label>
+                                    <input type="number" class="form-control" name="discount" id="discount"
+                                        placeholder="discount " value="{{ old('discount', 0) }}">
+                                    @error('discount')
+                                        <small class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="mb-3 col-md-6">
@@ -134,7 +144,8 @@
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="files">Upload Các ảnh khác </label>
-                                    <input multiple class="form-control" type="file" name="list_image[]" id="list_image">
+                                    <input multiple class="form-control" type="file" name="list_image[]"
+                                        id="list_image">
                                     @error('list_image')
                                         <small class="text-danger">
                                             {{ $message }}

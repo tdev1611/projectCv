@@ -29,8 +29,10 @@ class ProductService
         $validator = Validator::make($data, [
             'name' => 'required|max:250|unique:products,name,',
             'slug' => 'required|max:250|unique:products,slug,',
+            'code' => 'unique:products,code,',
             'category_product_id' => 'required|exists:category_products,id',
             'price' => 'required|numeric',
+            'discount' => 'nullable|numeric|between:0,100',
             'desc' => 'required',
             'detail' => 'required',
             'images' => 'required',
@@ -90,6 +92,7 @@ class ProductService
             'slug' => 'required|max:250|unique:products,slug,' . $id,
             'category_product_id' => 'required|exists:category_products,id',
             'price' => 'required|numeric',
+            'discount' => 'nullable|numeric|between:0,100',
             'desc' => 'required',
             'detail' => 'required',
             'list_image' => 'nullable|array',
