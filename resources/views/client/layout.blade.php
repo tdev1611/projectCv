@@ -14,16 +14,21 @@
         type="text/css" />
     <link href="{{ asset('client/public/style.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('client/public/responsive.css') }}" rel="stylesheet" type="text/css" />
-
-    <script src="{{ asset('client/public/js/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('client/public/js/elevatezoom-master/jquery.elevatezoom.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('client/public/js/bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('client/public/js/carousel/owl.carousel.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('client/public/js/main.js') }}" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
+    <style>
+        .mess-order-header {
+            color: #5e6054;
+            text-align: center;
+            margin: 0 auto;
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
     <div id="site">
         <div id="container">
             <div id="header-wp">
@@ -68,54 +73,8 @@
                                 <span class="phone">0987.654.321</span>
                             </div>
                             <div id="btn-respon" class="fl-right"><i class="fa fa-bars" aria-hidden="true"></i></div>
-                            <a href="?page=cart" title="giỏ hàng" id="cart-respon-wp" class="fl-right">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                <span id="num">2</span>
-                            </a>
-                            <div id="cart-wp" class="fl-right">
-                                <div id="btn-cart">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                    <span id="num">2</span>
-                                </div>
-                                <div id="dropdown">
-                                    <p class="desc">Có <span>2 sản phẩm</span> trong giỏ hàng</p>
-                                    <ul class="list-cart">
-                                        <li class="clearfix">
-                                            <a href="" title="" class="thumb fl-left">
-                                                <img src="{{ asset('client/public/images/img-pro-11.png') }}"
-                                                    alt="">
-                                            </a>
-                                            <div class="info fl-right">
-                                                <a href="" title="" class="product-name">Sony Express
-                                                    X6</a>
-                                                <p class="price">6.250.000đ</p>
-                                                <p class="qty">Số lượng: <span>1</span></p>
-                                            </div>
-                                        </li>
-                                        <li class="clearfix">
-                                            <a href="" title="" class="thumb fl-left">
-                                                <img src="{{ asset('client/public/images/img-pro-23.png') }}"
-                                                    alt="">
-                                            </a>
-                                            <div class="info fl-right">
-                                                <a href="" title="" class="product-name">Laptop Lenovo
-                                                    10</a>
-                                                <p class="price">16.250.000đ</p>
-                                                <p class="qty">Số lượng: <span>1</span></p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="total-price clearfix">
-                                        <p class="title fl-left">Tổng:</p>
-                                        <p class="price fl-right">18.500.000đ</p>
-                                    </div>
-                                    <dic class="action-cart clearfix">
-                                        <a href="?page=cart" title="Giỏ hàng" class="view-cart fl-left">Giỏ hàng</a>
-                                        <a href="?page=checkout" title="Thanh toán" class="checkout fl-right">Thanh
-                                            toán</a>
-                                    </dic>
-                                </div>
-                            </div>
+
+                            <x-client.layout.cart />
                         </div>
                     </div>
                 </div>
@@ -249,7 +208,12 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script> --}}
-  
+        <script src="{{ asset('client/public/js/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('client/public/js/elevatezoom-master/jquery.elevatezoom.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('client/public/js/bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('client/public/js/carousel/owl.carousel.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('client/public/js/main.js') }}" type="text/javascript"></script>
+        <script src="http://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         @yield('js')
 </body>
 

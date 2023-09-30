@@ -6,10 +6,10 @@
                 <div class="secion-detail">
                     <ul class="list-item clearfix">
                         <li>
-                            <a href="" title="">Trang chủ</a>
+                            <a href="{{ route('home') }}" title="">Trang chủ</a>
                         </li>
                         <li>
-                            <a href="" title="">Điện thoại</a>
+                            <a title="">{{ $category->name }}</a>
                         </li>
                     </ul>
                 </div>
@@ -17,7 +17,7 @@
             <div class="main-content fl-right">
                 <div class="section" id="list-product-wp">
                     <div class="section-head clearfix">
-                        <h3 class="section-title fl-left">Laptop</h3>
+                        <h3 class="section-title fl-left">{{ $category->name }}</h3>
                         <div class="filter-wp fl-right">
                             <p class="desc">Hiển thị 45 trên 50 sản phẩm</p>
                             <div class="form-filter">

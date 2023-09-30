@@ -17,10 +17,10 @@
                 <div class="secion-detail">
                     <ul class="list-item clearfix">
                         <li>
-                            <a href="" title="">Trang chủ</a>
+                            <a href="{{ route('home') }}" title="">Trang chủ</a>
                         </li>
                         <li>
-                            <a href="" title="">Điện thoại</a>
+                            <a title="">{{ $category->name }}</a>
                         </li>
                     </ul>
                 </div>
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="thumb-respon-wp fl-left">
-                            <img src="public/images/img-pro-01.png" alt="">
+                            <img src="{{ asset('client/public/images/img-pro-01.png') }}" alt="">
                         </div>
                         <div class="info fl-right">
                             <h3 class="product-name">{{ $product->name }}</h3>
@@ -55,12 +55,33 @@
                                 <span class="title">Sản phẩm: </span>
                                 <span class="status">Còn hàng</span>
                             </div>
+                            <div class="num-product " style="display:flex; justify-content: space-between; width:60%">
+
+                                <select id="selectColor" class="form-select" aria-label="Default select example"
+                                    style="display:block; padding:10px; border-radius:5px">
+                                    <option selected value="">Chọn màu sắc</option>
+                                    @foreach ($product->colors as $color)
+                                        <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                    @endforeach
+                                </select>
+                                <select id="selectSize" class="form-select" aria-label="Default select example"
+                                    style="display:block; padding:10px; border-radius:5px">
+                                    <option selected value="">Chọn size</option>
+                                    @foreach ($product->sizes as $size)
+                                        <option value="{{ $size->id }}">{{ $size->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             @if ($product->discount == 0)
-                                <p class="price">{{ number_format($product->price, 0, ',', '.') }}$</p>
+                                <p class="price">{{ number_format($product->price, 0, '.', ',') }}$</p>
+                                <p id="price" style="display: none">{{ $product->price }}</p>
                             @else
                                 <p class="price">
-                                    {{ number_format($product->price - ($product->discount * $product->price) / 100, 0, ',', '.') }}$
+                                    {{ number_format($product->price - ($product->discount * $product->price) / 100, 0, '.', ',') }}$
                                 </p>
+
+                                <p id="price" style="display: none">
+                                    {{ $product->price - ($product->discount * $product->price) / 100 }}</p>
                             @endif
 
                             <div id="num-order-wp">
@@ -71,7 +92,8 @@
                                 <a title="" id="plus"><i class="fa fa-plus"></i>
                                 </a>
                             </div>
-                            <a href="?page=cart" title="Thêm giỏ hàng" class="add-cart">Thêm giỏ hàng</a>
+                            <a href="#" title="Thêm giỏ hàng" data-id="{{ $product->id }}" class="add-cart">Thêm giỏ
+                                hàng</a>
                         </div>
                     </div>
                 </div>
@@ -112,15 +134,14 @@
 
                                 <div class="price" v-if="item.discount >0">
 
-                                    <span class="new">@{{ new Intl.NumberFormat("de-DE").format(product.price - Math.round((product.discount * product.price) / 100)) }}$</span>
+                                    <span class="new">@{{ new Intl.NumberFormat("en-US").format(item.price - Math.round((item.discount * item.price) / 100)) }}$</span>
 
-                                    <span class="old">@{{ new Intl.NumberFormat("de-DE").format(item.price) }}$</span>
+                                    <span class="old">@{{ new Intl.NumberFormat("en-US").format(item.price) }}$</span>
                                 </div>
                                 <div class="price" v-else>
-                                    <span class="new">@{{ new Intl.NumberFormat("de-DE").format(item.price) }}$</span>
+                                    <span class="new">@{{ new Intl.NumberFormat("en-US").format(item.price) }}$</span>
                                 </div>
                                 <div class="action clearfix">
-
                                     <a :href="productDetailRoute.replace(':slug', item.slug)" title=""
                                         class="buy-now " style="text-align:center">
                                         Xem chi tiết</a>
@@ -143,7 +164,7 @@
                 <div class="section" id="banner-wp">
                     <div class="section-detail">
                         <a href="" title="" class="thumb">
-                            <img src="public/images/banner.png" alt="">
+                            <img src="{{ asset('client/public/images/banner.png') }}" alt="">
                         </a>
                     </div>
                 </div>
@@ -153,6 +174,70 @@
 @endsection
 
 @section('js')
+    <script>
+        $(document).ready(function() {
+            $('.add-cart').click(function(e) {
+                e.preventDefault();
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                let productId = $(this).attr('data-id');
+                let qty = $('#num-order').val()
+                let color = $('#selectColor').find(":selected").text();
+                let size = $('#selectSize').find(":selected").text();
+                let price = $('#price').text()
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    }
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('client.gio-hang.store') }}',
+                    data: {
+                        id: productId,
+                        qty: qty,
+                        color: color,
+                        size: size,
+                        price: price,
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        console.log(response.cart);
+                        if (response.status == true) {
+                            Swal.fire({
+                                    icon: 'success',
+                                    title: response.messages,
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                })
+                                .then((result) => {
+                                    location.reload();
+                                })
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: response.messages,
+                                showConfirmButton: false,
+                                timer: 2000
+                            }).then((result) => {
+
+                            })
+                        }
+
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            })
+
+        })
+    </script>
+
+
+
     <script>
         var app = new Vue({
             el: '#productsRelated',

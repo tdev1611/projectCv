@@ -18,12 +18,12 @@
             @{{ product.name }}
         </a>
         <div class="price" v-if="product.discount >0">
-            <span class="new">@{{ new Intl.NumberFormat("de-DE").format(product.price - Math.round((product.discount * product.price) / 100)) }}$</span>
-            <span class="old">@{{ new Intl.NumberFormat("de-DE").format(product.price) }}$</span>
+            <span class="new">@{{ new Intl.NumberFormat("en-US").format(product.price - Math.round((product.discount * product.price) / 100)) }}$</span>
+            <span class="old">@{{ new Intl.NumberFormat("en-US").format(product.price) }}$</span>
 
         </div>
         <div class="price" v-else>
-            <span class="new">@{{ new Intl.NumberFormat("de-DE").format(product.price) }}$</span>
+            <span class="new">@{{ new Intl.NumberFormat("en-US").format(product.price) }}$</span>
         </div>
         <div class="action clearfix">
             <a :href="productDetailRoute.replace(':slug', product.slug)" title="Xem chi tiết" class="buy-now "

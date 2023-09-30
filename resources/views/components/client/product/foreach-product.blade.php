@@ -26,11 +26,11 @@
     <div class="price">
         @if ($product->discount > 0)
             <span class="new">
-                {{ number_format($product->price - ($product->discount * $product->price) / 100, 0, ',', '.') }}$
+                {{ number_format($product->price - ($product->discount * $product->price) / 100, 0, '.', ',') }}$
             </span>
-            <span class="old">{{ number_format($product->price, 0, ',', '.') }}$</span>
+            <span class="old">{{ number_format($product->price, 0, '.', ',') }}$</span>
         @elseif ($product->discount == 0)
-            <span class="new">{{ number_format($product->price, 0, ',', '.') }}$</span>
+            <span class="new">{{ number_format($product->price, 0, '.', ',') }}$</span>
         @endif
 
     </div>

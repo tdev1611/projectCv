@@ -1,5 +1,32 @@
 @extends('client.layout')
 @section('content')
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title" style="text-align: center">Thông báo</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa officia eligendi perferendis, porro
+                        molestiae ut, ex cum dicta quia est accusamus incidunt aspernatur? Expedita aperiam adipisci fuga
+                        sunt, a minolestiae ut, ex cum dicta quia est accusamus incidunt aspernatur? Expedita aperiam
+                        adipisci fuga sunt, a minoa minolestiae ut, ex cum dicta quia est accusamus incidunt aspernatur?
+                        Expedita aperiam adipisci fuga sunt, a minoa minolestiae ut, ex cum dicta quia est accusamus
+                        incidunt aspernatur? Expedita aperiam adipisci fuga sunt, a minoa minolestiae ut, ex cum dicta quia
+                        est accusamus incidunt aspernatur? Expedita aperiam adipisci fuga sunt, a minolestiae ut, ex cum
+                        dicta quia est accusamus incidunt aspernatur? Expedita aperiam adipisci fuga sunt, a minima..</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <div id="main-content-wp" class="home-page clearfix">
         <div class="wp-inner">
             <div class="main-content fl-right">
@@ -128,4 +155,10 @@
 @endsection
 
 @section('js')
+    <script>
+        $(document).ready(function() {
+            $("#myModal").modal('show');
+       
+        });
+    </script>
 @endsection

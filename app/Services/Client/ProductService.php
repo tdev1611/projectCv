@@ -37,11 +37,16 @@ class ProductService
 
 
 
+    function findCategory($slug)
+    {
+        return     $category = $this->categoryProduct->where('slug', $slug)->first();
+    }
+
     //products bycate
     function productByCategory($slug)
     {
 
-        $category = $this->categoryProduct->where('slug', $slug)->first();
+        $category = $this->findCategory($slug);
         if (!isset($category)) {
             return abort(404);
         }
@@ -59,7 +64,7 @@ class ProductService
 
     function find($slug)
     {
-        $product = $this->product->where('slug', $slug)->where('status', 1)->first();
+        $product = $this->product->where('slug', $slug)->where('status', 1)->with('colors', 'sizes')->first();
         if ($product === null) {
             throw new \Exception('Not Found');
         }

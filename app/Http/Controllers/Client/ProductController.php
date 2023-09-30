@@ -28,7 +28,7 @@ class ProductController extends Controller
 
             $category = $this->category->where('id', $product->category_product_id)->with('products')->first();
             $productsRelate = $category->products->where('slug', '!=', $slug);
-            return view('client.products.show', compact('product', 'list_images', 'productsRelate'));
+            return view('client.products.show', compact('category','product', 'list_images', 'productsRelate'));
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());
         }
@@ -39,8 +39,9 @@ class ProductController extends Controller
     function showProducts($slug)
     {
         try {
+            $category = $this->product->findCategory($slug);
             $products = $this->product->productByCategory($slug);
-            return view('client.products.byCategory', compact('products'));
+            return view('client.products.byCategory', compact('products','category'));
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());
         }

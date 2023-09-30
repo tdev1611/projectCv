@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\WelcomeController;
 use App\Http\Controllers\Client\ProductController;
+use App\Http\Controllers\Client\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::group(['prefix' => 'san-pham'], function () {
     // Route::post('products/{product}/comments','ProductsController@comment')->name('comment')->middleware('auth');
 
 });
+
+Route::resource('gio-hang', CartController::class, ['as' => 'client']);
 
 // Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'CheckLogin', 'CheckAdmin']], function () {
 //     include 'admin.php';
