@@ -122,6 +122,15 @@ return [
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
+    // Captcha
+    'default'   => [
+        'length'    => 5,
+        'width'     => 120,
+        'height'    => 36,
+        'quality'   => 90,
+        'math'      => true,  //Enable Math Captcha
+        'expire'    => 60,    //Captcha expiration
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -161,11 +170,12 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-    
+
         /*
          * Package Service Providers...
          */
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -230,6 +240,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ],
 
 ];

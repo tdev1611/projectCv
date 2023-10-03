@@ -31,7 +31,13 @@ Route::group(['prefix' => 'san-pham'], function () {
 
 });
 
+
+// cart
 Route::resource('gio-hang', CartController::class, ['as' => 'client']);
+Route::get('/gio-hang/delete/{id}', [CartController::class, 'delete'])->name('client.cart.delete');
+
+
+
 
 // Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'CheckLogin', 'CheckAdmin']], function () {
 //     include 'admin.php';
