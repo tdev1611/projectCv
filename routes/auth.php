@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Auth\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +20,10 @@ use Illuminate\Support\Facades\Route;
 //     include 'admin.php';
 // });
 
+
+
+Route::get('/register', [UserController::class, 'registerForm'])->name('auth.register.form');
+Route::post('/register', [UserController::class, 'register'])->name('auth.post.register');
+Route::get('/login', [UserController::class, 'loginForm'])->name('auth.login.form');
+Route::post('/login', [UserController::class, 'login'])->name('auth.post.login');
+Route::get('logout', [UserController::class, 'logout'])->name('auth.logout');
