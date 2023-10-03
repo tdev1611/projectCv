@@ -17,7 +17,8 @@ class CartController extends Controller
 
     public function index()
     {
-        $items = $this->cartService->getSessionCart();
+        !Auth::user() ?   $items = $this->cartService->getSessionCart() : $items = $this->cartService->getItemsDb();
+
         return view('client.cart.index', compact('items'));
     }
 
@@ -106,10 +107,11 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         try {
-            !Auth::user() ?   $this->cartService->removeItemSession() : $this->cartService->removeItemDb();
+            !Auth::user() ? $this->cartService->removeItemSession() : $this->cartService->removeItemDb();
+
             return response()->json([
                 'status' => true,
                 'message' => 'Delete successfully'

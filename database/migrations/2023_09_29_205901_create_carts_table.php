@@ -20,7 +20,7 @@ class CreateCartsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->integer('qty');
-            $table->decimal('price');
+            $table->decimal('price',12,2);
             $table->decimal('subtotal');
             $table->longText('options');
             $table->timestamps();

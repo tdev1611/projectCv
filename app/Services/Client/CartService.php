@@ -110,6 +110,14 @@ class CartService
     //cart db
     //---------------------------------------------------------------------------------
 
+    function getItemsDb()
+    {
+        return $this->cart::all();
+    }
+
+
+
+
     function addCartDb(Request $request)
     {
         $validator = $this->validateStoreCart($request->all());
@@ -119,8 +127,8 @@ class CartService
         //find product
         $product = $this->findProduct($request->id);
         //create rowId
-        $rowId = md5($request->color . $request->size);
-        $existItem = $this->cart::where('rowId', $rowId)
+        $rowId = md5($request->color . $request->size. $product->id);
+        $existItem = $this->cart->where('rowId', $rowId)
             ->where('user_id', auth()->user()->id)
             ->first();
         if ($existItem) {
@@ -128,7 +136,7 @@ class CartService
             $existItem->subtotal = $existItem->qty * $product->price;
             return $existItem->save();
         }
-        $cart = $this->addToCartDb($product, $request->rowId, $request->qty, $request->color, $request->size, $request->price);
+        $cart = $this->addToCartDb($product, $rowId, $request->qty, $request->color, $request->size, $request->price);
         return $cart;
     }
 
@@ -143,6 +151,7 @@ class CartService
             'subtotal' => $qty * $price,
             'price' => $price,
             'options' => json_encode([
+                'code' => $product->code,
                 'image' => $product->images,
                 'color' => $color,
                 'size' => $size,
@@ -160,6 +169,6 @@ class CartService
         if (!$item) {
             throw new \Exception('Not found Item');
         }
-        $item->delete();
+        return $item->delete();
     }
 }

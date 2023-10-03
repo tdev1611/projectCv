@@ -50,20 +50,29 @@
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
+                                @php
+                                    $options = json_decode($item->options, true);
+                                    
+                                @endphp
                                 <tr>
-                                    <td><span class="badge-primary">{{ $item->options->code }} </span></td>
+                                    <td><span
+                                            class="badge-primary">{{ !auth()->user() ? $item->options->code : $options['code'] }}
+                                        </span></td>
                                     <td>
-                                        <a target="_blank" href="{{ route('client.product.show', $item->options->slug) }}"
+                                        <a target="_blank"
+                                            href="{{ route('client.product.show', !auth()->user() ? $item->options->slug : $options['slug']) }}"
                                             title="{{ $item->name }}" class="thumb">
-                                            <img src="{{ url($item->options->image) }}" alt="">
+                                            <img src="{{ url(!auth()->user() ? $item->options->image : $options['image']) }}"
+                                                alt="">
                                         </a>
                                     </td>
                                     <td>
-                                        <a target="_blank" href="{{ route('client.product.show', $item->options->slug) }}"
+                                        <a target="_blank"
+                                            href="{{ route('client.product.show', !auth()->user() ? $item->options->slug : $options['slug']) }}"
                                             title="{{ $item->name }}" class="name-product">{{ $item->name }}</a>
                                     </td>
                                     <td> <span class="badge-warning">
-                                            {{ $item->options->color . ' - ' . $item->options->size }}
+                                            {{ !auth()->user() ? $item->options->color . ' - ' . $item->options->size : $options['color'] . ' - ' . $options['size'] }}
                                         </span>
                                     </td>
                                     <td>
@@ -214,8 +223,8 @@
                         }
                     });
                     $.ajax({
-                        type: 'DELETE',
-                        url: '{{ route('client.gio-hang.destroy', '') }}/' + deleteItemId,
+                        type: 'GET',
+                        url: '{{ route('client.cart.delete', '') }}/' + deleteItemId,
                         data: {
                             rowId: deleteItemId,
                         },
@@ -245,7 +254,16 @@
                             }
                         },
                         error: function(error) {
+                            console.log(error);
                             $("#deleteModal").modal("hide");
+                            Swal.fire({
+                                icon: 'error',
+                                title: error.error,
+                                showConfirmButton: false,
+                                timer: 2000
+                            }).then((result) => {
+                                $("#deleteModal").modal("hide");
+                            })
                         }
                     });
                 });
