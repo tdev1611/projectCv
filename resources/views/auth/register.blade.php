@@ -72,7 +72,18 @@
             </div>
         </div>
 
+        <div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" id="captcha" name="captcha" placeholder="Type  captcha">
+                </div>
+                <div class="col-md-6 d-flex" id="captcha-ctn">
+                    <span class="mr-2">{!! captcha_img('flat') !!}</span>
+                    <button type="button" class="btn btn-success btn-refresh"><i class="fa fa-refresh"></i></button>
+                </div>
+            </div>
 
+        </div>
         <div class="text-right p-t-8 p-b-31">
             <a href="#">
                 {{-- Forgot password? --}}
@@ -117,4 +128,24 @@
             </a>
         </div>
     </form>
+
+
+
+@endsection
+@section('js')
+    <script>
+        // refr captcha
+        $(document).ready(function() {
+            $(".btn-refresh").click(function() {
+                $.ajax({
+                    type: "GET",
+                    url: '{{ route('auth.refresh_captcha') }}',
+                    success: function(data) {
+                        console.log(data);
+                        $("#captcha-ctn span").html(data.captcha);
+                    },
+                });
+            });
+        });
+    </script>
 @endsection

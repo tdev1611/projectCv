@@ -27,3 +27,8 @@ Route::post('/register', [UserController::class, 'register'])->name('auth.post.r
 Route::get('/login', [UserController::class, 'loginForm'])->name('auth.login.form');
 Route::post('/login', [UserController::class, 'login'])->name('auth.post.login');
 Route::get('logout', [UserController::class, 'logout'])->name('auth.logout');
+
+
+
+Route::get('refresh_captcha', [UserController::class, 'refreshCaptcha'])->name('auth.refresh_captcha');
+

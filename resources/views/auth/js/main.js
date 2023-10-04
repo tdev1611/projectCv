@@ -23,7 +23,8 @@ $(document).ready(function () {
                         showConfirmButton: false,
                         timer: 2000,
                     }).then((result) => {
-                        location.reload();
+                        // location.reload();
+                        window.location.href = "{{ route('home') }}";
                     });
                 } else {
                     Swal.fire({
@@ -46,7 +47,7 @@ $(document).ready(function () {
         });
     });
 
-    // login
+    // login-=------------------------------------
     $("#loginForm").submit(function (e) {
         e.preventDefault();
         var csrfToken = $('meta[name="csrf-token"]').attr("content");
@@ -69,8 +70,7 @@ $(document).ready(function () {
                         showConfirmButton: false,
                         timer: 2000,
                     }).then((result) => {
-                        let url = "http://localhost/back-end/Laravel-Pro/project/new-ismart";
-                        location.href = url;
+                        window.location.href = "{{ route('home') }}"
                     });
                 } else {
                     Swal.fire({
@@ -93,3 +93,4 @@ $(document).ready(function () {
         });
     });
 });
+

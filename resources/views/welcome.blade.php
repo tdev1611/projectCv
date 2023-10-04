@@ -157,8 +157,15 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $("#myModal").modal('show');
-       
+            var modalShown = sessionStorage.getItem('modalShown');
+
+            if (!modalShown) {
+                setTimeout(function() {
+                    $("#myModal").modal('show');
+                    sessionStorage.setItem('modalShown', 'true'); 
+            
+                }, 200); 
+            }
         });
     </script>
 @endsection

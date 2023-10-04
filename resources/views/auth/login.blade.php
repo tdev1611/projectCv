@@ -1,5 +1,5 @@
 @extends('auth.layout')
-@section('title','Login')
+@section('title', 'Login')
 @section('content')
     <form class="login100-form validate-form" id="loginForm" action="{{ route('auth.login.form') }}">
         <span class="login100-form-title p-b-49">
@@ -16,6 +16,18 @@
             <span class="label-input100">Password</span>
             <input class="input100" type="password" name="password" placeholder="Type your password">
             <span class="focus-input100" data-symbol="&#xf190;"></span>
+        </div>
+
+        <div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" id="captcha" name="captcha" placeholder="Type  captcha">
+                </div>
+                <div class="col-md-6 d-flex" id="captcha-ctn">
+                    <span class="mr-2">{!! captcha_img('flat') !!}</span>
+                    <button type="button" class="btn btn-success btn-refresh"><i class="fa fa-refresh"></i></button>
+                </div>
+            </div>
         </div>
 
         <div class="text-right p-t-8 p-b-31">
@@ -63,4 +75,22 @@
             </a>
         </div>
     </form>
+@endsection
+
+@section('js')
+    <script>
+        // refr captcha
+        $(document).ready(function() {
+            $(".btn-refresh").click(function() {
+                $.ajax({
+                    type: "GET",
+                    url: '{{ route('auth.refresh_captcha') }}',
+                    success: function(data) {
+                        console.log(data);
+                        $("#captcha-ctn span").html(data.captcha);
+                    },
+                });
+            });
+        });
+    </script>
 @endsection

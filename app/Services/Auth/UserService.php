@@ -29,7 +29,7 @@ class UserService
     }
     function requestLogin(Request $request)
     {
-        $data = $request->only('email', 'password');
+        $data = $request->only('email', 'password','captcha');
         return $data;
     }
     function accountLogin($data)
@@ -53,6 +53,7 @@ class UserService
                 'password_confirmation' => 'required',
                 'referral_code' => 'numeric|unique:users,referral_code',
                 'referrer_code' => ['nullable', 'numeric', new InviteCodeMatch],
+                'captcha' => 'required',
             ],
         );
         return $validator;
@@ -66,6 +67,9 @@ class UserService
         if ($validator->fails()) {
             throw new \Exception($validator->errors()->first());
         }
+        if (!captcha_check($data['captcha'])) {
+            throw new \Exception('Invalid CAPTCHA');
+        }
         return $validator;
     }
 
@@ -76,8 +80,9 @@ class UserService
         $validator = Validator::make(
             $data,
             [
-                'email' => 'required|string',
+                'email' => 'required|string|',
                 'password' => 'required|string',
+                'captcha' => 'required',
             ],
         );
         return $validator;

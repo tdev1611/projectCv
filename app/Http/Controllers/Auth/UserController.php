@@ -17,7 +17,9 @@ class UserController extends Controller
     }
     function registerForm()
     {
-        return view('auth.register');
+       
+        return Auth::user() ? redirect(route('home'))->with('success', 'You logged in successfully')
+        : view('auth.register');
     }
 
 
@@ -41,7 +43,7 @@ class UserController extends Controller
             $data['password'] =  Hash::make($request->password);
             // create
             $user = $this->userService->register($data);
-            // $this->logined($user);
+            $this->logined($user);
 
             return response()->json([
                 'success' => true,
@@ -61,12 +63,16 @@ class UserController extends Controller
     {
         $data = $this->userService->requestLogin($request);
         try {
-            $validator = $this->userService->checkValidateLogin($data);
+            $this->userService->checkValidateLogin($data);
+            if (!captcha_check($data['captcha'])) {
+                throw new \Exception('Invalid CAPTCHA');
+            }
 
             $user = $this->userService->accountLogin($data);
             if (!$user || !Hash::check($data['password'], $user->password)) {
                 throw new \Exception('The account does not exist on the system');
             }
+       
             $this->logined($user);
 
             return response()->json([
@@ -82,7 +88,15 @@ class UserController extends Controller
     }
 
 
-    function logout(Request $request)
+    public function refreshCaptcha()
+
+    {
+
+        return response()->json(['captcha'=> captcha_img('flat')]);
+
+    }
+
+    function logout()
     {
         Auth::logout();
         return redirect(route('auth.login.form'));

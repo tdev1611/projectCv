@@ -122,15 +122,7 @@ return [
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
-    // Captcha
-    'default'   => [
-        'length'    => 5,
-        'width'     => 120,
-        'height'    => 36,
-        'quality'   => 90,
-        'math'      => true,  //Enable Math Captcha
-        'expire'    => 60,    //Captcha expiration
-    ],
+ 
 
     /*
     |--------------------------------------------------------------------------
@@ -175,7 +167,7 @@ return [
          * Package Service Providers...
          */
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-        Mews\Captcha\CaptchaServiceProvider::class,
+    
         /*
          * Application Service Providers...
          */
@@ -184,6 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
 
     ],
 
