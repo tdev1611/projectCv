@@ -1,0 +1,90 @@
+ .geNdhL {
+     font-size: 20px;
+     line-height: 32px;
+     font-weight: 300;
+     margin: 4px 0px 12px;
+ }
+
+ .dfHeIP .info-title {
+     font-size: 16px;
+     line-height: 24px;
+     font-weight: 400;
+     color: rgb(100, 100, 109);
+ }
+
+ .khBVOu .form-info .form-avatar {
+     margin-right: 16px;
+ }
+
+ .iRBxWb {
+     background-color: rgb(240, 248, 255);
+     border-radius: 50%;
+     width: 112px;
+     height: 112px;
+     border: 4px solid rgb(194, 225, 255);
+     position: relative;
+     -webkit-box-pack: center;
+     justify-content: center;
+     display: flex;
+     -webkit-box-align: center;
+     align-items: center;
+ }
+
+ .iRBxWb .avatar-view {
+     cursor: pointer;
+     display: flex;
+     -webkit-box-pack: center;
+     justify-content: center;
+     -webkit-box-align: center;
+     align-items: center;
+ }
+
+ .iRBxWb .avatar-view .default {
+     width: 50px;
+     height: 50px;
+ }
+
+ .iRBxWb .avatar-view .edit {
+     position: absolute;
+     width: 16px;
+     height: 16px;
+     background-color: rgb(100, 100, 109);
+     border-radius: 12px;
+     right: 3px;
+     bottom: 5px;
+     -webkit-box-align: center;
+     align-items: center;
+     -webkit-box-pack: center;
+     justify-content: center;
+     display: flex;
+ }
+
+ .jXurFV {
+     flex: 1 1 0%;
+ }
+
+ .geNdhL {
+     font-size: 20px;
+     line-height: 32px;
+     font-weight: 300;
+     margin: 4px 0px 12px;
+ }
+
+ .dfHeIP .info {
+     display: flex;
+     flex-wrap: nowrap;
+     -webkit-box-pack: justify;
+     justify-content: space-between;
+     background-color: rgb(255, 255, 255);
+     border-radius: 8px;
+ }
+
+ .dfHeIP .info-left {
+     width: 100%;
+     padding: 16px 24px 16px 16px;
+ }
+
+ .dfHeIP .info-vertical {
+     border-left: 1px solid rgb(235, 235, 240);
+     margin: 16px 0px;
+ }

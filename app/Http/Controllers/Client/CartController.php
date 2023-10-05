@@ -17,9 +17,15 @@ class CartController extends Controller
 
     public function index()
     {
-        !Auth::user() ?   $items = $this->cartService->getSessionCart() : $items = $this->cartService->getItemsDb();
-
-        return view('client.cart.index', compact('items'));
+        // !Auth::user() ?   $items = $this->cartService->getSessionCart() : $items = $this->cartService->getItemsDb();
+ 
+        if (!Auth::user()) {
+            $items = $this->cartService->getSessionCart();
+            return view('client.cart.index', compact('items'));
+        }
+        $items = $this->cartService->getItemsDb();
+        $totalDb = $this->cartService->totalCartDb();
+        return view('client.cart.index', compact('items', 'totalDb'));
     }
 
     /**
@@ -89,7 +95,8 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         if (!Auth::user()) {
-            $item = $this->cartService->update($request);
+            $item = $this->cartService->updateItemSession($request);
+
             return response()->json([
                 'status' => true,
                 'message' => 'Updated successfully ' . $item->name,
@@ -99,6 +106,17 @@ class CartController extends Controller
                 'qty' => $item->qty,
             ]);
         }
+
+
+        $item = $this->cartService->updateItemDb($request);
+        return response()->json([
+            'status' => true,
+            'message' => 'Updated successfully ' . $item->name,
+            'subtotal' =>  number_format($item->subtotal, 0, '.', ',') . '$',
+            'total' => $this->cartService->totalCartDb(),
+            'cartCount' => $this->cartService->cartCountDb(),
+            'qty' => $item->qty,
+        ]);
     }
 
     /**
@@ -121,6 +139,19 @@ class CartController extends Controller
                 'status' => false,
                 'error' => $e->getMessage(),
             ]);
+        }
+    }
+
+
+    // desstroy cart
+    function deleleCart()
+    {
+
+        try {
+            !Auth::user() ? $this->cartService->destroyCartSession() : $this->cartService->destroyCartDb();
+            return back()->with('success', 'Successfully deleted Cart');
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
         }
     }
 }

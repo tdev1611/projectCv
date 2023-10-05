@@ -32,6 +32,11 @@ class CartService
         return $this->sessionCart::count();
     }
 
+    function destroyCartSession()
+    {
+        return $this->sessionCart::destroy();
+    }
+
     function validateStoreCart($data)
     {
         $validator = Validator::make($data, [
@@ -85,7 +90,7 @@ class CartService
 
     // / update 
 
-    function update(Request $request)
+    function updateItemSession(Request $request)
     {
         $id = $request->rowId;
         $qty = $request->qty;
@@ -93,8 +98,6 @@ class CartService
         $item = $this->sessionCart::get($id);
         return $item;
     }
-
-
 
     function removeItemSession()
     {
@@ -112,11 +115,28 @@ class CartService
 
     function getItemsDb()
     {
-        return $this->cart::all();
+        return  $this->findCartByUserId(auth()->user()->id)->get();
+    }
+    function totalCartDb()
+    {
+
+        return  $this->findCartByUserId(auth()->user()->id)->sum('subtotal');
     }
 
+    function cartCountDb()
+    {
+        return  $this->findCartByUserId(auth()->user()->id)->sum('qty');
+    }
 
+    function findCartByUserId($userId)
+    {
+        return $this->cart->where('user_id', $userId);
+    }
 
+    function findItemByUserId($userId, $rowId)
+    {
+        return $this->cart->where('user_id', $userId)->where('rowId', $rowId)->first();
+    }
 
     function addCartDb(Request $request)
     {
@@ -127,7 +147,7 @@ class CartService
         //find product
         $product = $this->findProduct($request->id);
         //create rowId
-        $rowId = md5($request->color . $request->size. $product->id);
+        $rowId = md5($request->color . $request->size . $product->id);
         $existItem = $this->cart->where('rowId', $rowId)
             ->where('user_id', auth()->user()->id)
             ->first();
@@ -160,7 +180,21 @@ class CartService
         ]);
     }
 
-
+    function updateItemDb(Request $request)
+    {
+        $id = $request->rowId;
+        $qty = $request->qty;
+        $cart = $this->findItemByUserId(auth()->user()->id, $id);
+        $cart->update([
+            'qty' => $qty,
+            'subtotal' => $qty * $this->findItemByUserId(auth()->user()->id, $id)->price
+        ]);
+        // $this->cart->where('rowId', $id)->where('user_id', auth()->user()->id)->update([
+        //     'qty' => $qty,
+        //     'subtotal' => $qty * $this->cart->where('rowId', $id)->first()->price
+        // ]);
+        return  $cart = $this->findItemByUserId(auth()->user()->id, $id);
+    }
 
     function removeItemDb()
     {
@@ -170,5 +204,10 @@ class CartService
             throw new \Exception('Not found Item');
         }
         return $item->delete();
+    }
+    function destroyCartDb()
+    {
+        $items =  $this->findCartByUserId(auth()->user()->id)->whereNotNull('id');
+        return $items->delete();
     }
 }

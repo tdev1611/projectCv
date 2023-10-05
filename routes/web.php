@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\WelcomeController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\CartController;
+use App\Http\Controllers\Client\OrderController;
+use App\Http\Controllers\Client\ProfileController;
+use App\Http\Controllers\Client\ShippingAddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +22,18 @@ use App\Http\Controllers\Client\CartController;
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
 
+Route::group(['prefix' => 'thong-tin', 'middleware' => ['auth', 'checkLogin']], function () {
+    // info user
+    Route::get('/', [ProfileController::class, 'index'])->name('client.profile.index');
+    Route::put('/{id}', [ProfileController::class, 'update'])->name('client.profile.update');
+
+
+    Route::get('/dia-chi', [ShippingAddressController::class, 'index'])->name('client.address.index');
+    Route::post('/dia-chi', [ShippingAddressController::class, 'store'])->name('client.address.store');
+    Route::post('/cap-nhat-dia-chi', [ShippingAddressController::class, 'update'])->name('client.address.update');
+});
+
+
 Route::group(['prefix' => 'san-pham'], function () {
     // Route::get('/', 'ProductsController@productShows')->name('productShows');
     // Route::get('/loc-san-pham', 'ProductsController@sortProduct')->name('products.sort');
@@ -32,9 +47,21 @@ Route::group(['prefix' => 'san-pham'], function () {
 });
 
 
-// cart
-Route::resource('gio-hang', CartController::class, ['as' => 'client']);
-Route::get('/gio-hang/delete/{id}', [CartController::class, 'delete'])->name('client.cart.delete');
+
+
+
+
+Route::group(['middleware' => ['auth', 'checkLogin']], function () {
+    // cart
+    Route::resource('gio-hang', CartController::class, ['as' => 'client']);
+    Route::get('/gio-hang-deleteAll', [CartController::class, 'deleleCart'])->name('client.cart.deleleCart');
+    Route::get('/gio-hang/delete/{id}', [CartController::class, 'delete'])->name('client.cart.delete');
+
+    // check out
+    Route::get('/thanh-toan', [OrderController::class, 'index'])->name('client.checkout.index');
+    Route::post('/thanh-toan', [OrderController::class, 'store'])->name('client.checkout.store');
+    Route::get('/dat-hang-thanh-cong', [OrderController::class, 'thank'])->name('client.checkout.thank');
+});
 
 
 

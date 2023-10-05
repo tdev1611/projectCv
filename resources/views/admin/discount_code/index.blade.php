@@ -9,7 +9,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        Sản phẩm</h1>
+                        Mã giảm giá </h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -24,7 +24,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">Danh sách</li>
+                        <li class="breadcrumb-item text-muted">Danh sách Mã giảm giá </li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -44,22 +44,16 @@
                         <div class="card">
 
                             <div class="card-body">
-                                <h4 class="card-title">Danh sách sản phẩm</h4>
+                                <h4 class="card-title">Danh sách Mã giảm giá </h4>
                                 <div class="table-responsive">
                                     <table id="myTable"
                                         class="table table-hover table-row-dashed table-row-gray-300 gy-7 table-striped">
                                         <thead>
                                             <tr class="fw-bold fs-6 text-gray-800 px-7">
                                                 <th>#</th>
-                                                <th>Mã sản phẩm</th>
-                                                <th>Tên sản phẩm</th>
-                                                <th>Danh mục</th>
-                                                <th>Giá</th>
+                                                <th>Tên mã</th>
                                                 <th>Giảm giá</th>
-                                                <th>Ảnh</th>
-                                                <th>Màu sắc</th>
-                                                <th>Kích thước</th>
-                                                <th>Nổi bật</th>
+                                                <th>Ghi chú</th>
                                                 <th>Trạng thái</th>
                                                 <th>Action</th>
                                             </tr>
@@ -68,43 +62,18 @@
                                             @php
                                                 $temp = 0;
                                             @endphp
-                                            @foreach ($products as $product)
+                                            @foreach ($codes as $code)
                                                 @php
                                                     $temp++;
                                                 @endphp
                                                 <tr>
                                                     <td>{{ $temp }}</td>
-                                                    <td><span class="badge bg-primary">{{ $product->code }}</span></td>
-                                                    <td>{{ $product->name }}</td>
-                                                    <td>{{ $product->category->name }}</td>
-                                                    <td>{{ number_format($product->price, 0, '.', ',') }}$</td>
-                                                    <td>{{ $product->discount > 0 ? $product->discount . '%' : 0 . '%' }}
-                                                    </td>
-                                                    <td>
-                                                        <img src="{{ url($product->images) }}" height="100"
-                                                            alt="{{ $product->name }}">
-                                                    </td>
-                                                    <td>
-                                                        @foreach ($product->colors as $color)
-                                                            <span>{{ $color->name }},</span>
-                                                        @endforeach
-                                                    </td>
-                                                    <td>
-                                                        @foreach ($product->sizes as $size)
-                                                            <span>{{ $size->name }},</span>
-                                                        @endforeach
-                                                    </td>
+                                                    <td><span class="badge bg-primary">{{ $code->code }}</span></td>
 
+                                                    <td>{{ number_format($code->amount, 0, '.', ',') }}$</td>
+                                                    <td>{{ $code->note }}</td>
 
-
-
-                                                    @if ($product->features == 1)
-                                                        <td> <span class="badge bg-primary">Hiển thị</span></td>
-                                                    @else
-                                                        <td> <span class="badge bg-warning">Ẩn</span></td>
-                                                    @endif
-
-                                                    @if ($product->status == 1)
+                                                    @if ($code->status == 1)
                                                         <td> <span class="badge bg-primary">Hiển thị</span></td>
                                                     @else
                                                         <td> <span class="badge bg-warning">Ẩn</span></td>
@@ -113,27 +82,27 @@
                                                     <td class="">
                                                         <div class="d-flex" style="    justify-content: space-around;">
                                                             <span class="badge bg-primary ">
-                                                                <a href="{{ route('admin.products.edit', $product->id) }}"
+                                                                <a href="{{ route('admin.discount-code.edit', $code->id) }}"
                                                                     style="color:#fff">Sửa</a>
                                                             </span>
                                                             <span class="badge bg-danger">
                                                                 {{-- {{ route('admin.sizes.delete', $size->id) }} --}}
                                                                 <a href="" data-bs-toggle="modal"
-                                                                    data-bs-target="#staticBackdrop-{{ $product->id }}"
+                                                                    data-bs-target="#staticBackdrop-{{ $code->id }}"
                                                                     style="color: #fff">Xóa</a>
                                                             </span>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="staticBackdrop-{{ $product->id }}"
+                                                <div class="modal fade" id="staticBackdrop-{{ $code->id }}"
                                                     data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="staticBackdropLabel">Delete size
-                                                                    <b>{{ $product->name }}</b>
+                                                                    <b>{{ $code->code }}</b>
                                                                 </h5>
                                                                 <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal" aria-label="Close"></button>
@@ -144,7 +113,7 @@
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">No</button>
-                                                                <a href="{{ route('admin.products.delete', $product->id) }}"
+                                                                <a href="{{ route('admin.discount-code.delete', $code->id) }}"
                                                                     type="button" class="btn btn-danger">Yes</a>
                                                             </div>
                                                         </div>

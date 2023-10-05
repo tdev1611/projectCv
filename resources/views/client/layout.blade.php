@@ -16,29 +16,23 @@
     <link href="{{ asset('client/public/responsive.css') }}" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link rel="stylesheet" href="{{ url('resources/css/app.css') }}">
 </head>
 
 <body>
-    <style>
-        .mess-order-header {
-            color: #5e6054;
-            text-align: center;
-            margin: 0 auto;
-            display: block;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-    </style>
+   
     <div id="site">
         <div id="container">
             <div id="header-wp">
                 <div id="head-top" class="clearfix">
                     <div class="wp-inner">
-                        <a href="" title="" id="payment-link" class="fl-left">Hình thức thanh toán</a>
+                        <a href="" title="" id="payment-link"
+                            class="fl-left">{{ auth()->user() ? auth()->user()->name : 'Khách hàng' }}</a>
                         <div id="main-menu-wp" class="fl-right">
                             <ul id="main-menu" class="clearfix">
                                 <li>
-                                    <a href="?page=home" title="">Trang chủ</a>
+                                    <a href="{{ route('home') }}" title="">Trang chủ</a>
                                 </li>
                                 <li>
                                     <a href="?page=category_product" title="">Sản phẩm</a>
@@ -51,6 +45,9 @@
                                 </li>
                                 <li>
                                     <a href="?page=detail_blog" title="">Liên hệ</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('client.profile.index') }}" title="">Cá nhân</a>
                                 </li>
                             </ul>
                         </div>
@@ -79,7 +76,7 @@
                     </div>
                 </div>
             </div>
-
+            {{-- <x-admin.alert-notify /> --}}
             @yield('content')
 
             <div id="footer-wp">

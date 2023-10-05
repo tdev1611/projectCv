@@ -3,23 +3,29 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use Illuminate\Http\Request;
-use App\Services\Auth\UserService;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Services\Auth\UserService;
+use App\Services\Client\CartService;
+
 
 class UserController extends Controller
 {
     protected $userService;
-    function __construct(UserService $userService)
+    protected $cartService;
+    function __construct(UserService $userService, CartService $cartService)
     {
         $this->userService = $userService;
+        $this->cartService = $cartService;
     }
     function registerForm()
     {
-       
+
         return Auth::user() ? redirect(route('home'))->with('success', 'You logged in successfully')
-        : view('auth.register');
+            : view('auth.register');
     }
 
 
@@ -67,13 +73,16 @@ class UserController extends Controller
             if (!captcha_check($data['captcha'])) {
                 throw new \Exception('Invalid CAPTCHA');
             }
-
             $user = $this->userService->accountLogin($data);
             if (!$user || !Hash::check($data['password'], $user->password)) {
                 throw new \Exception('The account does not exist on the system');
             }
-       
             $this->logined($user);
+
+            // get items session
+            $items = $this->cartService->getSessionCart();
+            // update to db
+            $this->mergeItemtoDb($items);
 
             return response()->json([
                 'success' => true,
@@ -92,18 +101,39 @@ class UserController extends Controller
 
     {
 
-        return response()->json(['captcha'=> captcha_img('flat')]);
-
+        return response()->json(['captcha' => captcha_img('flat')]);
     }
 
     function logout()
     {
         Auth::logout();
+        request()->session()->flush();
         return redirect(route('auth.login.form'));
     }
 
     function logined($user)
     {
         return   Auth::login($user);
+    }
+
+
+
+    function mergeItemtoDb($items)
+    {
+
+        foreach ($items as $item) {
+            Cart::updateOrCreate([
+                'rowId' => $item->rowId,
+                'user_id' => Auth::user()->id,
+                'name' => $item->name,
+                'product_id' => $item->id,
+                'qty' => $item->qty,
+                'price' => $item->price,
+                'subtotal' => $item->subtotal,
+                'options' => json_encode($item->options),
+            ]);
+        }
+        // desstroy
+        $this->cartService->destroyCartSession();
     }
 }

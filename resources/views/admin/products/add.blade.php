@@ -159,7 +159,7 @@
                                     <label for="features" class="form-label"> Nổi bật </label>
                                     <select class="form-select form-select-lg mb-3" aria-label="Large select example"
                                         name="features" id="features">
-                                        <option value="2" {{ old('features') == 2 ? 'selected' : '' }}> Ẩn
+                                        <option value="2" {{ old('features') == 1 ? 'selected' : '' }}> Ẩn
                                         </option>
                                         <option value="1" {{ old('features') == 2 ? 'selected' : '' }}>
                                             Hiển thị
@@ -175,7 +175,7 @@
                                     <label for="status" class="form-label">Trạng thái </label>
                                     <select class="form-select form-select-lg mb-3" aria-label="Large select example"
                                         name="status" id="status">
-                                        <option value="1" {{ old('status') == 2 ? 'selected' : '' }}>
+                                        <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>
                                             Hiển thị
                                         </option>
                                         <option value="2" {{ old('status') == 2 ? 'selected' : '' }}> Ẩn

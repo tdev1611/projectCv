@@ -1,0 +1,122 @@
+ #order-success .section-head .mess-order>.img-alert {
+     width: 50px;
+     display: inline-block;
+     height: 40px;
+     object-fit: contain;
+     margin-right: 8px;
+ }
+
+ #order-success #order-end {
+     text-align: center;
+     margin-top: 50px;
+ }
+
+ .btn-check-mail {
+     display: inline-block;
+     padding: 10px 40px;
+     text-transform: uppercase;
+     border-radius: 3px;
+     font-family: "Roboto Medium";
+     font-weight: normal;
+     border: none;
+     outline: none;
+     background: #7b9662;
+     color: #fff;
+     transition: all 0.3s;
+     margin-top: 24px;
+     margin-left: 20px;
+ }
+
+ #order-success #order-end .home {
+     display: inline-block;
+     padding: 10px 40px;
+     text-transform: uppercase;
+     border-radius: 3px;
+     font-family: "Roboto Medium";
+     font-weight: normal;
+     border: none;
+     outline: none;
+     background: #1c59f5cd;
+     color: #fff;
+     transition: all 0.3s;
+     margin-top: 24px;
+ }
+
+ #order-success .section-detail .product-bought .tfoot .total-price {
+     text-align: center;
+ }
+
+ .table>tfoot>tr>td {
+     border-top: none !important;
+ }
+
+ .table tbody {
+     background: #fff;
+ }
+
+ .bg-white {
+     background-color: #FFF !important;
+ }
+
+ #order-success .section-detail .product-bought .tfoot {
+     text-transform: uppercase;
+     font-weight: bold;
+ }
+
+ .product-bought tbody tr td.image-product-order img {
+     max-width: 100px;
+ }
+
+ .tfoot td {
+     border: 1px solid gray
+ }
+
+ #order-success .section-head .mess-order {
+     color: #0dbf00;
+     font-size: 30px;
+     text-align: center;
+     padding-bottom: 20px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ #order-success .section-detail .info-customer {
+     font-size: 16px;
+     color: green;
+     margin-top: 18px;
+     margin-bottom: 6px;
+ }
+
+ #order-success .section-head .mess-order~p,
+ #order-end .mess-order-2 p {
+     text-align: center;
+     font-size: 18px;
+     color: #796c6c;
+ }
+
+
+
+ /* loading */
+
+ #loading-overlay {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-color: rgba(0, 0, 0, 0.5);
+     z-index: 9999;
+     display: none;
+     align-items: center;
+     justify-content: center;
+
+ }
+
+ .loading-text {
+     position: absolute;
+     top: 40%;
+     left: 34%;
+     font-size: 20px;
+     color: white;
+ }

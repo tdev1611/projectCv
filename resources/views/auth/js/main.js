@@ -62,7 +62,7 @@ $(document).ready(function () {
             data: $(this).serialize(),
             dataType: "json",
             success: function (response) {
-                console.log(response);
+                console.log(response.message);
                 if (response.success == true) {
                     Swal.fire({
                         icon: "success",
@@ -70,7 +70,7 @@ $(document).ready(function () {
                         showConfirmButton: false,
                         timer: 2000,
                     }).then((result) => {
-                        window.location.href = "{{ route('home') }}"
+                        // window.location.href = "{{ route('home') }}"
                     });
                 } else {
                     Swal.fire({
@@ -81,15 +81,7 @@ $(document).ready(function () {
                     }).then((result) => {});
                 }
             },
-            error: function (error) {
-                console.log(error);
-                Swal.fire({
-                    icon: "error",
-                    title: error.responseJSON.message,
-                    showConfirmButton: false,
-                    timer: 2000,
-                }).then((result) => {});
-            },
+           
         });
     });
 });
