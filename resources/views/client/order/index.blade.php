@@ -115,7 +115,13 @@
                                 </tr>
                             </tfoot>
                         </table>
-
+                        <div id="loading-overlay">
+                            <div class="loading-text">Đang gửi thông tin đơn hàng đến email của bạn!
+                                <div class="spinner-border text-warning">
+                                    <span class="sr-only">Loading</span>
+                                </div>
+                            </div>
+                        </div>
 
                         <div id="code-discount">
                             <label for="code_discount">Mã giảm giá</label>
@@ -141,21 +147,13 @@
     </div>
     </div>
     </div>
-
-    <div id="loading-overlay">
-        <div class="loading-text">Đang gửi thông tin đơn hàng đến email của bạn!
-            <div class="spinner-border text-warning">
-                <span class="sr-only">Loading</span>
-            </div>
-        </div>
-    </div>
 @endsection
 
 
 
 @section('js')
     <script>
-        $('#order-now').click(function(e) {
+        $('#formCheckout').submit(function(e) {
             e.preventDefault();
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
@@ -190,7 +188,7 @@
                             showConfirmButton: false,
                             timer: 2000
                         }).then((result) => {
-
+                            $('#loading-overlay').hide();
                         })
                     }
 

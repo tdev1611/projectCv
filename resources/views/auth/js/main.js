@@ -24,7 +24,7 @@ $(document).ready(function () {
                         timer: 2000,
                     }).then((result) => {
                         // location.reload();
-                        window.location.href = "{{ route('home') }}";
+                        window.location.href = "{{ route('home') }}"
                     });
                 } else {
                     Swal.fire({
@@ -70,7 +70,7 @@ $(document).ready(function () {
                         showConfirmButton: false,
                         timer: 2000,
                     }).then((result) => {
-                        // window.location.href = "{{ route('home') }}"
+                        window.location.href = "{{ route('home') }}"
                     });
                 } else {
                     Swal.fire({
@@ -81,8 +81,6 @@ $(document).ready(function () {
                     }).then((result) => {});
                 }
             },
-           
         });
     });
 });
-

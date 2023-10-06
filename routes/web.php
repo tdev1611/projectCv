@@ -7,6 +7,7 @@ use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Client\ShippingAddressController;
+use App\Http\Controllers\Client\PaymentHistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,10 @@ Route::group(['prefix' => 'thong-tin', 'middleware' => ['auth', 'checkLogin']], 
     Route::get('/dia-chi', [ShippingAddressController::class, 'index'])->name('client.address.index');
     Route::post('/dia-chi', [ShippingAddressController::class, 'store'])->name('client.address.store');
     Route::post('/cap-nhat-dia-chi', [ShippingAddressController::class, 'update'])->name('client.address.update');
+
+
+    Route::get('/lich-su-mua-hang', [PaymentHistoryController::class, 'index'])->name('client.history.index');
+    Route::get('/lich-su-mua-hang/{code}', [PaymentHistoryController::class, 'show'])->name('client.history.show');
 });
 
 

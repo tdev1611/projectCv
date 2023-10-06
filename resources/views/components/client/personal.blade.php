@@ -5,10 +5,10 @@
     <div class="secion-detail">
         <ul class="list-item">
             <li>
-                <a href="{{ route('client.profile.index') }}" title="">Thông tin tài khoản</a>
+                <a href="{{ route('client.profile.index') }}" title="Thông tin tài khoản">Thông tin tài khoản</a>
             </li>
             <li>
-                <a href="{{ route('client.address.index') }}" title="">Địa chỉ nhận hàng</a>
+                <a href="{{ route('client.address.index') }}" title="Địa chỉ nhận hàng">Địa chỉ nhận hàng</a>
                 {{-- <ul class="sub-menu">
                     <li>
                         <a href="?page=category_product" title="">Iphone</a>
@@ -18,7 +18,7 @@
             </li>
 
             <li>
-                <a href="?page=category_product" title="">Lịch sử mua hàng</a>
+                <a href="{{ route('client.history.index') }}" title="Lịch sử mua hàng">Lịch sử mua hàng</a>
             </li>
 
 

@@ -21,7 +21,12 @@ class Order extends Model
         'status',
     ];
 
-    function user(){
+    function user()
+    {
         return $this->belongsTo(User::class);
+    }
+    function discount_code()
+    {
+        return $this->belongsTo(CodeDiscount::class,'code_discount_id');
     }
 }
