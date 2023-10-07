@@ -178,6 +178,7 @@
         $(document).ready(function() {
             $('.add-cart').click(function(e) {
                 e.preventDefault();
+               
                 var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
                 let productId = $(this).attr('data-id');

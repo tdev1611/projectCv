@@ -27,6 +27,10 @@ class Order extends Model
     }
     function discount_code()
     {
-        return $this->belongsTo(CodeDiscount::class,'code_discount_id');
+        return $this->belongsTo(CodeDiscount::class, 'code_discount_id');
+    }
+    function address()
+    {
+        return $this->belongsTo(ShippingAddress::class, 'info_id');
     }
 }

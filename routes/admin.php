@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\DiscountCodeController;
+use App\Http\Controllers\Admin\OrderController;
 
 Route::get('/', function () {
 })->name('admin.home');
@@ -42,3 +43,9 @@ Route::get('sizes/delete/{id}', [SizeController::class, 'delete'])->name('admin.
 //discount code
 Route::resource('discount-code', DiscountCodeController::class, ['as' => 'admin']);
 Route::get('discount-code/delete/{id}', [DiscountCodeController::class, 'delete'])->name('admin.discount-code.delete');
+
+
+// orders
+
+Route::resource('orders', OrderController::class, ['as' => 'admin']);
+Route::get('orders/delete/{id}', [OrderController::class, 'delete'])->name('admin.orders.delete');

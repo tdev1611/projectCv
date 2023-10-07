@@ -54,13 +54,12 @@ Route::group(['prefix' => 'san-pham'], function () {
 
 
 
-
+// cart
+Route::resource('gio-hang', CartController::class, ['as' => 'client']);
+Route::get('/gio-hang-deleteAll', [CartController::class, 'deleleCart'])->name('client.cart.deleleCart');
+Route::get('/gio-hang/delete/{id}', [CartController::class, 'delete'])->name('client.cart.delete');
 
 Route::group(['middleware' => ['auth', 'checkLogin']], function () {
-    // cart
-    Route::resource('gio-hang', CartController::class, ['as' => 'client']);
-    Route::get('/gio-hang-deleteAll', [CartController::class, 'deleleCart'])->name('client.cart.deleleCart');
-    Route::get('/gio-hang/delete/{id}', [CartController::class, 'delete'])->name('client.cart.delete');
 
     // check out
     Route::get('/thanh-toan', [OrderController::class, 'index'])->name('client.checkout.index');

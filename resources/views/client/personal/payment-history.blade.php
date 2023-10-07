@@ -57,7 +57,7 @@
                                                     <span style="margin-right:20px; " class="badge-danger">Thất bại</span>
                                                 @endif
                                                 <span class="">
-                                                    {{ date_format($order->created_at, 'Y/m/d') }}
+                                                    {{ $order->created_at}}
                                                 </span>
                                             </div>
                                         </div>

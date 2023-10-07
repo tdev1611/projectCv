@@ -303,7 +303,38 @@
             <!--end:Menu link-->
             <!--begin:Menu sub-->
             <div class="menu-sub menu-sub-accordion">
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.discount-code.create') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title"> Thêm mã giảm giá </span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--begin:Menu item-->
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.discount-code.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Danh sách mã giảm giá </span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--begin:Menu item-->
 
+
+
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu sub-->
+            <!--begin:Menu sub-->
+            <div class="menu-sub menu-sub-accordion">
                 <!--begin:Menu item-->
                 <div class="menu-item">
                     <!--begin:Menu link-->
@@ -337,7 +368,48 @@
         </div>
         <!--end:DEpossti item-->
 
+        <!--begin:DEpossti-->
+        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+            <!--begin:Menu link-->
+            <span class="menu-link">
+                <span class="menu-icon">
+                    {{-- begin::Svg Icon | path: icons/duotune/communication/com011.svg --}}
+                    <span class="svg-icon svg-icon-2">
+                        <i class="fa-brands fa-product-hunt"></i>
+                    </span>
+                    <!--end::Svg Icon-->
+                </span>
+                <span class="menu-title">
+                    <h5 style="color:gray">Đơn hàng</h5>
+                </span>
+                <span class="menu-arrow"></span>
+            </span>
+            <!--end:Menu link-->
+    
+            <!--end:Menu sub-->
+            <!--begin:Menu sub-->
+            <div class="menu-sub menu-sub-accordion">
+         
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.orders.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Danh sách đơn hàng </span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--begin:Menu item-->
 
+
+
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu sub-->
+        </div>
+        <!--end:DEpossti item-->
         <!-- module -->
     </div>
     <!--end::Menu-->

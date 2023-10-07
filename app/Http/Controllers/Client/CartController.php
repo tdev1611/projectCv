@@ -18,7 +18,7 @@ class CartController extends Controller
     public function index()
     {
         // !Auth::user() ?   $items = $this->cartService->getSessionCart() : $items = $this->cartService->getItemsDb();
- 
+
         if (!Auth::user()) {
             $items = $this->cartService->getSessionCart();
             return view('client.cart.index', compact('items'));

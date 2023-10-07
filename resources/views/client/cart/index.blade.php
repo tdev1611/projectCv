@@ -1,6 +1,6 @@
 @extends('client.layout')
 @section('content')
-    
+
     <link rel="stylesheet" href="{{ url('resources/css/cart.css') }}">
 
     <!-- Modal -->
@@ -119,7 +119,8 @@
                                     display: flex;">
                                                 <a href="{{ route('home') }}" title="Mua tiếp" id="update-cart">Mua
                                                     tiếp</a>
-                                                <a href="{{ route('client.checkout.index') }}" title="" id="checkout-cart">Thanh toán</a>
+                                                <a href="{{ route('client.checkout.index') }}" title=""
+                                                    id="checkout-cart">Thanh toán</a>
                                             </div>
                                         </div>
                                     </td>
