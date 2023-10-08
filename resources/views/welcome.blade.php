@@ -1,5 +1,8 @@
 @extends('client.layout')
 @section('content')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+
     <!-- The Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -31,6 +34,7 @@
         <div class="wp-inner">
             <div class="main-content fl-right">
                 <div class="section" id="slider-wp">
+
                     <div class="section-detail">
                         <div class="item">
                             <img src="{{ asset('client/public/images/slider-01.png') }}" alt="">
@@ -152,9 +156,15 @@
             </div>
         </div>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 @endsection
 
 @section('js')
+    <!-- Initialize Swiper -->
+
+
     <script>
         $(document).ready(function() {
             var modalShown = sessionStorage.getItem('modalShown');
@@ -162,9 +172,9 @@
             if (!modalShown) {
                 setTimeout(function() {
                     $("#myModal").modal('show');
-                    sessionStorage.setItem('modalShown', 'true'); 
-            
-                }, 200); 
+                    sessionStorage.setItem('modalShown', 'true');
+
+                }, 200);
             }
         });
     </script>

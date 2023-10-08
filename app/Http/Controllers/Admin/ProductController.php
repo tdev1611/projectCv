@@ -106,11 +106,71 @@ class ProductController extends Controller
     function delete($id)
     {
         try {
-            $product = $this->productService->find($id);
-            $product->delete();
+            $this->productService->delete($id);
             return back()->with('success', 'Successfully deleted');
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());
         }
+    }
+
+
+
+    function action(Request $request)
+    {
+        $list_check = $request->list_check;
+        $status = $request->status;
+        $discount = $request->discount;
+        $colors = $request->colors;
+        $sizes = $request->sizes;
+        $category_product_id = $request->category_product_id;
+        $features = $request->feature;
+
+        $delete_products = $request->delete_products;
+
+        try {
+            if (empty($list_check)) {
+                throw new \Exception('You must choose a product ');
+            }
+            if (empty($status || $discount || $colors || $sizes || $category_product_id || $features || $delete_products)) {
+                throw new \Exception('You must choose a action ');
+            }
+
+            foreach ($list_check as $id) {
+                $product = $this->productService->find($id);
+                if (!$product) {
+                    continue;
+                }
+
+                $status ? $product->status = $status : null;
+                $features ? $product->features = $features : null;
+                $discount ? $product->discount = $discount : null;
+                $category_product_id ? $product->category_product_id = $category_product_id : null;
+                $product->save();
+
+                $colors ? $this->syncColors($product) : null;
+                $sizes ? $this->syncSizes($product) : null;
+
+
+                $delete_products ? $product->delete() : null;
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Update member Successfully'
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'success' => false,
+                'message' => $exception->getMessage()
+            ]);
+        }
+    }
+    function syncColors($product)
+    {
+        $product->colors()->sync(request()->colors);
+    }
+    function syncSizes($product)
+    {
+        $product->sizes()->sync(request()->sizes);
     }
 }
