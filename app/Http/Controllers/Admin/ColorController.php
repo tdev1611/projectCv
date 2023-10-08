@@ -117,8 +117,7 @@ class ColorController extends Controller
     {
 
         try {
-            $color = $this->color->find($id);
-            $color->delete();
+            $this->color->delete($id);
             return back()->with('success', 'Successfully deleted');
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());

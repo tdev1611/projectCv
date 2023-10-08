@@ -52,7 +52,7 @@
                                         <option value="">Chọn tỉnh </option>
                                         @foreach ($provinces as $province)
                                             <option value="{{ $province->code }}"
-                                                @if ($province->code ==  $address->province?? null ) selected @endif>
+                                                {{ isset($address) && $address->province == $province->code ? 'selected' : '' }}>
                                                 {{ $province->name }}
                                             </option>
                                         @endforeach

@@ -25,11 +25,12 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted"> Tạo sản phẩm</li>
+                        <li class="breadcrumb-item text-muted"> Sửa sản phẩm</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
                 </div>
+                <a href="{{ route('admin.products.index') }}" class="btn btn-primary">Back</a>
             </div>
             <!--end::Toolbar container-->
             {{-- component alert --}}
@@ -248,7 +249,7 @@
                             </div>
 
                             <div class="input-group mb-3 mt-3">
-                                <button type="submit" class="btn btn-primary">Thêm</button>
+                                <button type="submit" class="btn btn-primary">Cập nhật</button>
                             </div>
                         </form>
                     </div>

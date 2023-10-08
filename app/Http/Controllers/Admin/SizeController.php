@@ -117,8 +117,8 @@ class SizeController extends Controller
     {
 
         try {
-            $size = $this->size->find($id);
-            $size->delete();
+          $this->size->delete($id);
+ 
             return back()->with('success', 'Successfully deleted');
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());

@@ -88,44 +88,20 @@
                                                                 <a href="{{ route('admin.orders.show', $order->id) }}"
                                                                     style="color:#fff">Chi tiết</a>
                                                             </span>
-                                                            <span class="badge bg-danger">
-                                                                {{-- {{ route('admin.sizes.delete', $size->id) }} --}}
-                                                                <a href="" data-bs-toggle="modal"
-                                                                    data-bs-target="#staticBackdrop-{{ $order->id }}"
-                                                                    style="color: #fff">Xóa</a>
+
+                                                            <span class="badge bg-danger delete_user" id=""
+                                                                data-id="{{ $order->id }}"
+                                                                data-name="{{ $order->code }}">
+                                                                <a href="#" style="color: #fff">Xóa</a>
                                                             </span>
                                                         </div>
                                                     </td>
 
                                                 </tr>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="staticBackdrop-{{ $order->id }}"
-                                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="staticBackdropLabel">Delete size
-                                                                    <b>{{ $order->code }}</b>
-                                                                </h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Are U sure?
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">No</button>
-                                                                <a href="{{ route('admin.orders.delete', $order->id) }}"
-                                                                    type="button" class="btn btn-danger">Yes</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             @endforeach
 
-
+                                            <!-- Modal -->
+                                            <x-admin.modal :column="'order'" />
                                         </tbody>
                                     </table>
                                 </div>
@@ -146,6 +122,66 @@
                     ],
 
                 });
+            });
+        </script>
+
+
+        <script>
+            $(document).ready(function() {
+                let deleteItemId = null;
+                let username = null;
+                $(".delete_user").click(function(e) {
+                    e.preventDefault();
+                    deleteItemId = $(this).data("id");
+                    username = $(this).attr("data-name");
+
+                    //show modal
+                    $("#staticBackdrop").modal("show");
+                    $("#dele_name").text(username);
+
+                    $("#confirmDelete").click(function() {
+                        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken
+                            }
+                        });
+                        $.ajax({
+                            type: 'GET',
+                            url: '{{ route('admin.orders.delete', '') }}/' + deleteItemId,
+                            data: {
+                                id: deleteItemId,
+                            },
+                            dataType: "json",
+                            success: function(response) {
+                                console.log(response);
+                                if (response.success == true) {
+                                    Swal.fire({
+                                            icon: 'success',
+                                            title: response.message,
+                                            showConfirmButton: false,
+                                            timer: 2000
+                                        })
+                                        .then((result) => {
+                                            $("#deleteModal").modal("hide");
+                                            location.reload();
+                                        })
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: response.error,
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    }).then((result) => {
+                                        $("#deleteModal").modal("hide");
+                                    })
+                                }
+                            },
+
+                        });
+                    });
+                });
+
             });
         </script>
     @endsection

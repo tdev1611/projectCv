@@ -67,8 +67,7 @@ class ColorService
     function delete($id)
     {
         $color = $this->find($id);
-        $img_old = $color->image;
-        unlink($img_old);
+      
         return $color->delete();
     }
 }

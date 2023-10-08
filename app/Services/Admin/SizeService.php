@@ -67,8 +67,6 @@ class SizeService
     function delete($id)
     {
         $size = $this->find($id);
-        $img_old = $size->image;
-        unlink($img_old);
         return $size->delete();
     }
 }

@@ -44,4 +44,28 @@ class OrderController extends Controller
             ]);
         }
     }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        try {
+            $this->orderService->delete($id);
+
+            return response()->json([
+                'success' => true,
+                'message' => ' deleted successfully'
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'success' => true,
+                'message' => $exception
+            ]);
+        }
+    }
 }

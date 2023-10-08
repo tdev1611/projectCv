@@ -39,4 +39,11 @@ class OrderService
             'status' => $data
         ]);
     }
+
+
+    function delete($id)
+    {
+        $order = $this->find($id);
+        return $order->delete();
+    }
 }

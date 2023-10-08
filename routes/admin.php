@@ -21,8 +21,11 @@ Route::resource('notify', NotifyController::class, ['as' => 'admin']);
 // users
 
 Route::resource('users', UserController::class, ['as' => 'admin']);
+Route::get('users/delete/{id}', [UserController::class, 'delete'])->name('admin.users.delete');
+Route::post('users-action', [UserController::class, 'action'])->name('admin.users.action');
 
 
+// products
 Route::resource('products', ProductController::class, ['as' => 'admin']);
 Route::get('products/delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete');
 
