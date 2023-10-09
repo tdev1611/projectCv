@@ -1,4 +1,5 @@
 @extends('client.layout')
+@section('title', 'TDEV STORE')
 @section('content')
 
 
@@ -14,6 +15,8 @@
                     </div>
                     <div class="modal-body">
                         {!! $notify->content !!}
+                        
+                        <p></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -157,15 +160,16 @@
 
     <script>
         $(document).ready(function() {
-            var modalShown = sessionStorage.getItem('modalShown');
+            $("#myModal").modal('show');
+            // var modalShown = sessionStorage.getItem('modalShown');
 
-            if (!modalShown) {
-                setTimeout(function() {
-                    $("#myModal").modal('show');
-                    sessionStorage.setItem('modalShown', 'true');
+            // if (!modalShown) {
+            //     setTimeout(function() {
+            //         $("#myModal").modal('show');
+            //         sessionStorage.setItem('modalShown', 'true');
 
-                }, 200);
-            }
+            //     }, 200);
+            // }
         });
     </script>
 @endsection

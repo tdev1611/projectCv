@@ -44,6 +44,7 @@ class SettingController extends Controller
         $data = $request->except('_method', '_token');
         try {
             $validator = $this->validateStore($data);
+
             $request->hasFile('image') ? $data['image'] = $this
                 ->handleUploadedImage($request->file('image'), 'setting') : null;
             $update = $this->setting->where('id', $id)->update($data);
@@ -62,6 +63,7 @@ class SettingController extends Controller
     {
         $validator = Validator::make($data, [
             'title' => 'required',
+            'keyword' => 'required',
             'content' => 'required',
             'desc' => 'nullable',
             'image' => 'nullable',

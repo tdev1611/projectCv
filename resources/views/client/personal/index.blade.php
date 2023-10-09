@@ -1,4 +1,5 @@
 @extends('client.personal.layout')
+@section('title', 'Cá nhân')
 @section('cten')
     <div class="info">
         <div class="info-left"><span class="info-title">Thông tin cá nhân</span>

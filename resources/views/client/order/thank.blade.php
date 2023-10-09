@@ -1,5 +1,5 @@
 @extends('client.layout')
-
+@section('title', 'Đặt hàng thành công')
 @section('content')
     <?php
     $jsonFilePath = asset('client/provinces.json');

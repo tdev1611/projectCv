@@ -2,9 +2,12 @@
 <html>
 
 <head>
-    <title>ISMART STORE</title>
+    <title>
+        @yield('title')
+    </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <x-client.head-seo />
     <link href="{{ asset('client/public/css/bootstrap/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('client/public/css/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('client/public/reset.css') }}" rel="stylesheet" type="text/css" />

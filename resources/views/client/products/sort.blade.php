@@ -1,4 +1,5 @@
 @extends('client.layout')
+@section('title', 'Sản phẩm')
 @section('content')
     <div id="main-content-wp" class="clearfix category-product-page">
         <div class="wp-inner">
@@ -37,7 +38,7 @@
                     <div class="section-detail">
                         <ul class="list-item clearfix">
                             <li>
-                              {{ $products->links() }}
+                                {{ $products->links() }}
                             </li>
 
                         </ul>
@@ -58,7 +59,7 @@
                         <h3 class="section-title">Bộ lọc</h3>
                     </div>
                     <div class="section-detail">
-                     
+
                     </div>
                 </div>
                 <div class="section" id="banner-wp">

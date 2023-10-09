@@ -1,4 +1,5 @@
 @extends('client.layout')
+@section('title', 'Thanh toán')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 @section('content')
@@ -162,7 +163,7 @@
                     'X-CSRF-TOKEN': csrfToken
                 }
             });
-        
+
             $.ajax({
                 type: 'POST',
                 url: $(this).attr('action'),
@@ -172,7 +173,7 @@
                     console.log(response);
                     if (response.success == true) {
                         $('#loading-overlay').show();
-               
+
                         Swal.fire({
                                 icon: 'success',
                                 title: response.message,

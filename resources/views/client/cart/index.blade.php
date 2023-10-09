@@ -1,4 +1,5 @@
 @extends('client.layout')
+@section('title', 'Giỏ hàng')
 @section('content')
 
     <link rel="stylesheet" href="{{ url('resources/css/cart.css') }}">

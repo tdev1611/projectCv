@@ -16,7 +16,8 @@ class CreateSettingWebsTable extends Migration
         Schema::create('setting_webs', function (Blueprint $table) {
             $table->id();
             $table->string('title')->comment('index');
-            $table->text('content')->comment('tags,content');
+            $table->string('keyword')->comment('tags,content');
+            $table->text('content');
             $table->text('desc')->nullable();
             $table->string('image')->comment('image:og; logo')->nullable();
             $table->tinyInteger('status')->comment('1: hiển thị; 2: ẩn');

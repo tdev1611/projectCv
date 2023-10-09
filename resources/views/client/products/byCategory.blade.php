@@ -1,4 +1,5 @@
 @extends('client.layout')
+@section('title', $category->name)
 @section('content')
     <div id="main-content-wp" class="clearfix category-product-page">
         <div class="wp-inner">

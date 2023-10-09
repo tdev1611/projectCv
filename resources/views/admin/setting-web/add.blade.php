@@ -42,24 +42,37 @@
                     <div class="col-12 ">
                         {{-- content --}}
                         <form method="POST" id="formsetting"
-                            action="{{ isset($setting) ? route('admin.setting.update', $setting->id) : route('admin.setting.store') }}">
+                            action="{{ isset($setting) ? route('admin.setting.update', $setting->id) : route('admin.setting.store') }}" enctype="multipart/form-data">
                             @csrf
                             @if (isset($setting))
                                 @method('PUT')
                             @endif
 
-                            <div class="mb-3">
-                                <label for="title" class="form-label"> Tiêu đề thông báo </label>
-                                <input type="text" class="form-control" name="title" id="title"
-                                    placeholder="title " value="{{ old('title', isset($setting) ? $setting->title : '') }}">
-                                @error('title')
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                @enderror
-                            </div>
 
                             <div class="row">
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="title" class="form-label"> Tiêu đề thông báo </label>
+                                    <input type="text" class="form-control" name="title" id="title"
+                                        placeholder="title "
+                                        value="{{ old('title', isset($setting) ? $setting->title : '') }}">
+                                    @error('title')
+                                        <small class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="keyword" class="form-label"> Từ khóa </label>
+                                    <input type="text" class="form-control" name="keyword" id="v"
+                                        placeholder="keyword "
+                                        value="{{ old('title', isset($setting) ? $setting->keyword : '') }}">
+                                    @error('keyword')
+                                        <small class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                    @enderror
+                                </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="content" class="form-label">Nội dung</label>
                                     <textarea name="content" id="content" cols="30" rows="10" placeholder="content" class="form-control">{{ old('content', isset($setting) ? $setting->content : '') }}</textarea>
@@ -84,9 +97,9 @@
                                     <input type="file" class="form-control" name="image" id="image"
                                         placeholder="title " value="">
                                     @if (isset($setting->image))
-                                    <img height="150" src="{{ url($setting->image) }}" alt="">
+                                        <img height="150" src="{{ url($setting->image) }}" alt="">
                                     @endif
-                                  
+
                                     @error('image')
                                         <small class="text-danger">
                                             {{ $message }}

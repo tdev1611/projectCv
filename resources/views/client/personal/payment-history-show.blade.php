@@ -1,4 +1,5 @@
 @extends('client.layout')
+@section('title', 'Lịch sử mua hàng')
 
 @section('content')
     <?php

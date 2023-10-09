@@ -1,4 +1,5 @@
 @extends('client.layout')
+@section('title', 'Cá nhân')
 @section('content')
     <link rel="stylesheet" href="{{ url('resources/css/personal.css') }}">
     <div id="main-content-wp" class="clearfix detail-product-page">

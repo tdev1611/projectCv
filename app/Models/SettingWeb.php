@@ -11,6 +11,7 @@ class SettingWeb extends Model
     protected $table = 'setting_webs';
 
     protected $fillable = [
+        'keyword',
         'status',
         'image',
         'desc',

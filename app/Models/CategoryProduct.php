@@ -26,7 +26,7 @@ class CategoryProduct extends Model
 
     function products()
     {
-        return $this->hasMany(Product::class)->where('status', 1);
+        return $this->hasMany(Product::class)->where('status', 1)->limit(12);
     }
 
     function getProductsBycate()
