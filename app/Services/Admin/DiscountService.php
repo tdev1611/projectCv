@@ -37,6 +37,7 @@ class DiscountService
             $data,
             [
                 'code' => 'required|max:250|unique:code_discounts,code,',
+                'qty' => 'required|numeric',
                 'amount' => 'required|numeric',
                 'note' => 'nullable|string',
                 'status' => 'in:1,2',
@@ -69,6 +70,7 @@ class DiscountService
         $validator = Validator::make($data, [
             'code' => 'required|max:70|unique:code_discounts,code,' . $id,
             'amount' => 'required|numeric',
+            'qty' => 'required|numeric',
             'note' => 'nullable|string',
             'status' => 'in:1,2',
 

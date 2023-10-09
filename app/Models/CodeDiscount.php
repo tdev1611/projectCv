@@ -11,6 +11,7 @@ class CodeDiscount extends Model
     protected  $table = 'code_discounts';
     protected $fillable = [
         'code',
+        'qty',
         'amount',
         'note',
         'status',

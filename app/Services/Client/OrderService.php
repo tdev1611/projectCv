@@ -66,6 +66,6 @@ class OrderService
 
     function findCode($value)
     {
-        return $this->code->where('code', $value)->first();
+        return $this->code->where('code', $value)->where('status', 1)->first();
     }
 }

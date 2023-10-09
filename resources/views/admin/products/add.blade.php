@@ -123,6 +123,16 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3 col-md-6">
+                                    <label for="qty" class="form-label"> Số lượng </label>
+                                    <input type="number" class="form-control" name="qty" id="qty"
+                                        placeholder="qty " value="{{ old('qty', 1) }}">
+                                    @error('qty')
+                                        <small class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3 col-md-6">
                                     <label for="discount" class="form-label"> Giảm giá </label>
                                     <input type="number" class="form-control" name="discount" id="discount"
                                         placeholder="discount " value="{{ old('discount', 0) }}">

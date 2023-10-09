@@ -114,10 +114,86 @@
 
                     </tbody>
                     <tfoot class="tfoot">
-                        <tr>
+                        {{-- <tr>
                             <td class="total-price" colspan="5">Tổng tiền:</td>
                             <td colspan="5">{{ number_format($order->total, 0, '.', ',') }}$</td>
-                        </tr>
+                        </tr> --}}
+                        <tfoot class="tfoot">
+                            @php
+                                $total = $order->total + 10;
+                            @endphp
+                            @if ($order->code_discount_id != null && $total + $order->discount_code->amount < 1000)
+                                <tr>
+                                    <td class="total-price" colspan="5">Tổng tiền:
+                                        <p><span>Mã giảm giá : <i style="color: red">{{ $order->discount_code->code }}</i>
+                                            </span> </p>
+                                        <p><span>Phí vận chuyển </span> </p>
+                                    </td>
+                                    <td colspan="5">
+                                        {{ number_format($order->total + $order->discount_code->amount - 10, 0, '.', ',') }}$
+                                        <p style="margin-top:5px"> - {{ $order->discount_code->amount }}$</p>
+                                        {{-- <p style="margin-top:5px"> + 10$</p> --}}
+                                        <p style="margin-top:5px"> + 10$</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="total-price" colspan="5">Tiền thanh toán:</td>
+                                    <td colspan="5">{{ number_format($order->total, 0, '.', ',') }}$</td>
+                                </tr>
+                            @elseif ($order->code_discount_id != null && $total + $order->discount_code->amount > 1000)
+                                <tr>
+                                    <td class="total-price" colspan="5">Tổng tiền:
+                                        <p><span>Mã giảm giá : <i style="color: red">{{ $order->discount_code->code }}</i>
+                                            </span> </p>
+                                        <p><span>Phí vận chuyển </span> </p>
+
+                                    </td>
+                                    <td colspan="5">
+                                        {{ number_format($order->total + $order->discount_code->amount + 10, 0, '.', ',') }}$
+                                        <p style="margin-top:5px"> - {{ $order->discount_code->amount }}$</p>
+                                        <p style="margin-top:5px"> - 10$</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="total-price" colspan="5">Tiền thanh toán:</td>
+                                    <td colspan="5">{{ number_format($order->total, 0, '.', ',') }}$</td>
+                                </tr>
+                            @elseif ($order->code_discount_id == null && $total < 1000)
+                                <tr>
+                                    <td class="total-price" colspan="5">Tổng tiền:
+
+                                        <p><span>Phí vận chuyển </span> </p>
+
+                                    </td>
+                                    <td colspan="5">
+                                        {{ number_format($total, 0, '.', ',') }}$
+                                        <p style="margin-top:5px"> + 10$</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="total-price" colspan="5">Tiền thanh toán:</td>
+                                    <td colspan="5">{{ number_format($order->total, 0, '.', ',') }}$</td>
+                                </tr>
+                            @else
+                                <tr>
+                                    <td class="total-price" colspan="5">Tổng tiền:
+                                        <p><span>Phí vận chuyển </span> </p>
+                                    </td>
+                                    <td colspan="5">
+                                        {{ number_format($total, 0, '.', ',') }}$
+                                        <p style="margin-top:5px"> - 10$</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="total-price" colspan="5">Tiền thanh toán:</td>
+                                    <td colspan="5">{{ number_format($order->total, 0, '.', ',') }}$</td>
+                                </tr>
+                            @endif
+
+
+                        </tfoot>
                     </tfoot>
                 </table>
             </div>

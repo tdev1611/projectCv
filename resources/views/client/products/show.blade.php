@@ -10,6 +10,35 @@
             max-width: 100%;
 
         }
+
+
+        #product-detail {
+            overflow: hidden;
+        }
+
+        .section-detail.expanded p {
+            height: auto;
+        }
+
+        #expandButton {
+            display: block;
+            color: #fff;
+            margin: 0 auto;
+            line-height: 50px;
+            width: 30%;
+            border-radius: 30px;
+            text-decoration: none;
+            border: 3px #ee5f4a solid;
+            background: #ee5f4a;
+            opacity: 0.7;
+            margin-bottom: 50px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #expandButton:hover {
+            background: #bc341f;
+        }
     </style>
     <div id="main-content-wp" class="clearfix detail-product-page">
         <div class="wp-inner">
@@ -53,7 +82,7 @@
                             </div>
                             <div class="num-product">
                                 <span class="title">Sản phẩm: </span>
-                                <span class="status">Còn hàng</span>
+                                <span class="status">Còn :{{ $product->qty }}</span>
                             </div>
                             <div class="num-product " style="display:flex; justify-content: space-between; width:60%">
 
@@ -92,8 +121,10 @@
                                 <a title="" id="plus"><i class="fa fa-plus"></i>
                                 </a>
                             </div>
-                            <a href="#" title="Thêm giỏ hàng" data-id="{{ $product->id }}" class="add-cart">Thêm giỏ
-                                hàng</a>
+                            <button @if ($product->qty < 1) disabled @endif
+                                {{ $product->qty < 1 ? ' title= "hết hàng"' : 'title="Thêm vào giỏ hàng"' }}
+                                data-id="{{ $product->id }}" class="add-cart">Thêm giỏ
+                                hàng</button>
                         </div>
                     </div>
                 </div>
@@ -101,9 +132,10 @@
                     <div class="section-head">
                         <h3 class="section-title">Mô tả sản phẩm</h3>
                     </div>
-                    <div class="section-detail">
+                    <div class="section-detail" id="product-detail" style="height: 600px">
                         {!! $product->detail !!}
                     </div>
+                    <button id="expandButton">Xem thêm</button>
                 </div>
 
 
@@ -178,7 +210,7 @@
         $(document).ready(function() {
             $('.add-cart').click(function(e) {
                 e.preventDefault();
-               
+
                 var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
                 let productId = $(this).attr('data-id');
@@ -238,7 +270,22 @@
     </script>
 
 
+    <script>
+        $(document).ready(function() {
 
+            $('#expandButton').click(function() {
+                $(this).toggleClass('expand');
+                if ($(this).hasClass('expand')) {
+                    $(this).prev().removeAttr('style')
+                    $(this).text('Thu gọn');
+                } else {
+                    $(this).text('Mở rộng');
+                    $(this).prev().css('height', '600px')
+                }
+
+            });
+        });
+    </script>
     <script>
         var app = new Vue({
             el: '#productsRelated',

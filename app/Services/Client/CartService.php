@@ -57,6 +57,9 @@ class CartService
             throw new \Exception($validator->errors()->first());
         }
         $product = $this->findProduct($request->id);
+        if ($request->qty > $product->qty) {
+            throw new \Exception('Product quantity is not enough');
+        }
         $cart = $this->addToCartSession($product, $request->qty, $request->color, $request->size, $request->price);
 
         return $cart;
@@ -146,6 +149,9 @@ class CartService
         }
         //find product
         $product = $this->findProduct($request->id);
+        if ($request->qty > $product->qty) {
+            throw new \Exception('Product quantity is not enough');
+        }
         //create rowId
         $rowId = md5($request->color . $request->size . $product->id);
         $existItem = $this->cart->where('rowId', $rowId)

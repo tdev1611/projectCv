@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->string('images');
             $table->longText('list_image');
             $table->longText('detail');
+            $table->integer('qty')->default(0);
             $table->tinyInteger('features');
             $table->tinyInteger('status');
             $table->timestamps();

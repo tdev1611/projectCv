@@ -45,12 +45,21 @@
                             @csrf
                             @method('PUT')
                             <div class="row">
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-3">
                                     <label for="code" class="form-label"> Tên mã </label>
                                     <input type="text" class="form-control" name="code" id="code"
-                                        placeholder="code " value="{{ $code->code }}">
+                                        placeholder="code " value="{{ old('code', $code->code) }}">
                                 </div>
-
+                                <div class="mb-3 col-md-3">
+                                    <label for="qty" class="form-label"> Số lượng </label>
+                                    <input type="text" class="form-control" name="qty" id="qty"
+                                        placeholder="qty " value="{{ old('qty', $code->qty) }}">
+                                    @error('qty')
+                                        <small class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                    @enderror
+                                </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="note" class="form-label">Ghi chú</label>
                                     <textarea name="note" id="note" cols="30" rows="2" placeholder="note" class="form-control">{{ $code->note }}</textarea>

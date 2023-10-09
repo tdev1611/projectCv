@@ -42,7 +42,7 @@ class ProductController extends Controller
         } else {
             $products->orderBy('name', 'asc');
         }
-        $products = $products->paginate(20);
+        $products = $products->paginate(12);
 
         return view('client.products.sort', compact('products'));
     }
@@ -96,7 +96,7 @@ class ProductController extends Controller
         } else {
             $products->oldest('name', 'asc');
         }
-        $products = $products->paginate(2);
+        $products = $products->paginate(12);
 
         return view('client.products.sort-product-by-category', compact('products', 'category'));
     }

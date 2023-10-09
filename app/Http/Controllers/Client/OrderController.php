@@ -53,19 +53,30 @@ class OrderController extends Controller
 
             // code_discount
             $codes =  $this->orderService->getCode();
-            $code_discount = $request->code_discount_id;
-            if ($code_discount &&  !in_array($code_discount, $codes)) {
-                throw new \Exception('Invalid code discount ');
+            $code_discount_id = $request->code_discount_id;
+            if ($code_discount_id &&  !in_array($code_discount_id, $codes)) {
+                throw new \Exception('Invalid code discount! ');
             }
 
-            if ($code_discount &&  in_array($code_discount, $codes)) {
-                $discount = $this->orderService->findCode($code_discount);
+            if ($code_discount_id &&  in_array($code_discount_id, $codes)) {
+                $discount = $this->orderService->findCode($code_discount_id);
+                if ($discount->qty < 1) {
+                    throw new \Exception('Expired discount code!');
+                }
+                // qty_discount
+                $discount->qty -= 1;
+                $discount->save();
                 $totalCart -= $discount->amount;
                 $data['code_discount_id'] = $discount->id;
             }
             $data['total'] =  $totalCart;
             $data['items'] =  $this->orderService->getItems();
+
+            // minusQtyProduct
+            $this->minusQtyProduct($data['items']);
+
             $order =  $this->orderService->create($data);
+
             // Mail::to($user->address->email)->send(new OrderSuccess($order));
             // destroy Items
             $this->orderService->destroyCartDb();
@@ -83,6 +94,17 @@ class OrderController extends Controller
                     'message' => $e->getMessage()
                 ]
             );
+        }
+    }
+
+
+
+    function minusQtyProduct($data)
+    {
+        foreach ($data as $item) {
+            $product =  $item->product;
+            $product->qty -= $item->qty;
+            $product->save();
         }
     }
 

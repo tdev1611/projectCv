@@ -17,6 +17,7 @@ class CreateCodeDiscountsTable extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->decimal('amount', 11, 2);
+            $table->integer('qty')->default(0);
             $table->string('note')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();

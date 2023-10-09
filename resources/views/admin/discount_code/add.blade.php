@@ -44,11 +44,21 @@
                         <form method="POST" id="formsize" action="{{ route('admin.discount-code.store') }}">
                             @csrf
                             <div class="row">
-                                <div class="mb-3 col-md-6">
+                                <div class="mb-3 col-md-3">
                                     <label for="code" class="form-label"> Tên mã </label>
                                     <input type="text" class="form-control" name="code" id="code"
                                         placeholder="code " value="{{ old('code') }}">
                                     @error('code')
+                                        <small class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3 col-md-3">
+                                    <label for="qty" class="form-label"> Số lượng </label>
+                                    <input type="text" class="form-control" name="qty" id="qty"
+                                        placeholder="qty " value="{{ old('qty') }}">
+                                    @error('qty')
                                         <small class="text-danger">
                                             {{ $message }}
                                         </small>

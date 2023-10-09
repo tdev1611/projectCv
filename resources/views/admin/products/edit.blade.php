@@ -172,6 +172,16 @@
                                         </small>
                                     @enderror
                                 </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="qty" class="form-label"> Số lượng </label>
+                                    <input type="number" class="form-control" name="qty" id="qty"
+                                        placeholder="qty " value="{{ old('qty', $product->qty) }}">
+                                    @error('qty')
+                                        <small class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="mb-3 col-md-6">

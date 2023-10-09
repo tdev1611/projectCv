@@ -162,7 +162,7 @@
                     'X-CSRF-TOKEN': csrfToken
                 }
             });
-            $('#loading-overlay').show();
+        
             $.ajax({
                 type: 'POST',
                 url: $(this).attr('action'),
@@ -171,7 +171,8 @@
                 success: function(response) {
                     console.log(response);
                     if (response.success == true) {
-                        $('#loading-overlay').hide();
+                        $('#loading-overlay').show();
+               
                         Swal.fire({
                                 icon: 'success',
                                 title: response.message,
@@ -179,6 +180,7 @@
                                 timer: 2000
                             })
                             .then((result) => {
+                                $('#loading-overlay').hide();
                                 window.location.href = "{{ route('client.checkout.thank') }}"
                             })
                     } else {

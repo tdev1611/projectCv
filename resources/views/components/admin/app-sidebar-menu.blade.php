@@ -386,37 +386,7 @@
                 <!--end:Menu item-->
             </div>
             <!--end:Menu sub-->
-            <!--begin:Menu sub-->
-            <div class="menu-sub menu-sub-accordion">
-                <!--begin:Menu item-->
-                <div class="menu-item">
-                    <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.discount-code.create') }}">
-                        <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                        </span>
-                        <span class="menu-title"> Thêm mã giảm giá </span>
-                    </a>
-                    <!--end:Menu link-->
-                </div>
-                <!--begin:Menu item-->
-                <!--begin:Menu item-->
-                <div class="menu-item">
-                    <!--begin:Menu link-->
-                    <a class="menu-link" href="{{ route('admin.discount-code.index') }}">
-                        <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                        </span>
-                        <span class="menu-title">Danh sách mã giảm giá </span>
-                    </a>
-                    <!--end:Menu link-->
-                </div>
-                <!--begin:Menu item-->
-
-
-
-                <!--end:Menu item-->
-            </div>
+        
             <!--end:Menu sub-->
         </div>
         <!--end:DEpossti item-->

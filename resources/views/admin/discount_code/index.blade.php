@@ -52,6 +52,7 @@
                                             <tr class="fw-bold fs-6 text-gray-800 px-7">
                                                 <th>#</th>
                                                 <th>Tên mã</th>
+                                                <th>Số lượng</th>
                                                 <th>Giảm giá</th>
                                                 <th>Ghi chú</th>
                                                 <th>Trạng thái</th>
@@ -70,6 +71,7 @@
                                                     <td>{{ $temp }}</td>
                                                     <td><span class="badge bg-primary">{{ $code->code }}</span></td>
 
+                                                    <td>{{ $code->qty }}</td>
                                                     <td>{{ number_format($code->amount, 0, '.', ',') }}$</td>
                                                     <td>{{ $code->note }}</td>
 

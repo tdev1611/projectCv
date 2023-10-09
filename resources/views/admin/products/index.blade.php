@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                   
+
                             <form action="{{ route('admin.products.action') }}" method="POST" id="actionForm">
                                 @csrf
                                 <!-- Modal -->
@@ -151,6 +151,7 @@
                                                     <th>#</th>
                                                     <th>Mã sản phẩm</th>
                                                     <th>Tên sản phẩm</th>
+                                                    <th>Số lượng</th>
                                                     <th>Danh mục</th>
                                                     <th>Giá</th>
                                                     <th>Giảm giá</th>
@@ -179,6 +180,7 @@
                                                         <td>{{ $temp }}</td>
                                                         <td><span class="badge bg-primary">{{ $product->code }}</span></td>
                                                         <td>{{ $product->name }}</td>
+                                                        <td>{{ $product->qty }}</td>
                                                         <td>{{ $product->category->name }}</td>
                                                         <td>{{ number_format($product->price, 0, '.', ',') }}$</td>
                                                         <td>{{ $product->discount > 0 ? $product->discount . '%' : 0 . '%' }}
