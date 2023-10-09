@@ -21,7 +21,7 @@
 </head>
 
 <body>
-   
+
     <div id="site">
         <div id="container">
             <div id="header-wp">
@@ -35,7 +35,7 @@
                                     <a href="{{ route('home') }}" title="">Trang chủ</a>
                                 </li>
                                 <li>
-                                    <a href="?page=category_product" title="">Sản phẩm</a>
+                                    <a href="{{ route('client.product.index') }}" title="Sản phẩm">Sản phẩm</a>
                                 </li>
                                 <li>
                                     <a href="?page=blog" title="">Blog</a>

@@ -40,12 +40,14 @@ Route::group(['prefix' => 'thong-tin', 'middleware' => ['auth', 'checkLogin']], 
 
 
 Route::group(['prefix' => 'san-pham'], function () {
-    // Route::get('/', 'ProductsController@productShows')->name('productShows');
-    // Route::get('/loc-san-pham', 'ProductsController@sortProduct')->name('products.sort');
+    Route::get('/', [ProductController::class, 'index'])->name('client.product.index');
+    Route::get('/loc-san-pham', [ProductController::class, 'sort'])->name('client.product.sort');
+
     // Route::get('/{slug}.html', 'ProductsController@productDetail')->name('productDetail');
     Route::get('/{slug}.html', [ProductController::class, 'show'])->name('client.product.show');
     Route::get('/{slug}', [ProductController::class, 'showProducts'])->name('client.product.byCategory');
-    // Route::get('/loc-san-cates/{slug}', 'ProductsController@softProductsByCate')->name('softProductsByCate'); //sortProductBycate--ajax
+    Route::get('/loc-san-pham/{slug}', [ProductController::class, 'sortByCate'])->name('client.product.sortByCate');
+    
     // commnent
     // Route::post('products/{product}/comments','ProductsController@comment')->name('comment')->middleware('auth');
 

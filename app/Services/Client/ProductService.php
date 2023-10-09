@@ -39,17 +39,17 @@ class ProductService
 
     function findCategory($slug)
     {
-        return     $category = $this->categoryProduct->where('slug', $slug)->first();
+        $category = $this->categoryProduct->where('slug', $slug)->first();
+        if (!isset($category)) {
+            return abort(404);
+        }
+        return $category;
     }
 
     //products bycate
     function productByCategory($slug)
     {
-
         $category = $this->findCategory($slug);
-        if (!isset($category)) {
-            return abort(404);
-        }
 
         $categoryId = $category->id;
         $sub_categorys =   $this->categoryProduct->where('cat_parent', $categoryId)->get();
@@ -58,6 +58,12 @@ class ProductService
             ->orWhereIn('category_product_id', $subCategoryIds)
             ->where('status', 1)->get();
         return $productByCate;
+    }
+
+
+    function queryProducts()
+    {
+        return Product::query();
     }
 
     //detail
@@ -73,6 +79,19 @@ class ProductService
 
     function show($slug)
     {
-        return $product = $this->find($slug);
+        return   $this->find($slug);
+    }
+
+    function softProduct($slug)
+    {
+        $category = $this->findCategory($slug);
+
+        $categoryId = $category->id;
+        $sub_categorys =   $this->categoryProduct->where('cat_parent', $categoryId)->get();
+        $subCategoryIds = $sub_categorys->pluck('id')->toArray();
+        $productByCate = $this->product->where('category_product_id', $categoryId)
+            ->orWhereIn('category_product_id', $subCategoryIds)
+            ->where('status', 1);
+        return $productByCate;
     }
 }
