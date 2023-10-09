@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\NotifyController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\ColorController;
@@ -17,6 +18,14 @@ Route::get('/', function () {
 
 Route::resource('notify', NotifyController::class, ['as' => 'admin']);
 
+// slider banner
+
+Route::resource('banners', BannerController::class, ['as' => 'admin']);
+Route::get('banner/delete/{id}', [BannerController::class, 'delete'])->name('admin.banners.delete');
+
+
+
+
 
 // users
 
@@ -28,7 +37,7 @@ Route::post('users-action', [UserController::class, 'action'])->name('admin.user
 // products
 Route::resource('products', ProductController::class, ['as' => 'admin']);
 Route::get('products/delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete');
-
+Route::post('products-action', [ProductController::class, 'action'])->name('admin.products.action');
 // category-products
 Route::resource('category-products', CategoryProductController::class, ['as' => 'admin']);
 Route::get('category-products/delete/{id}', [CategoryProductController::class, 'delete'])->name('admin.category-products.delete');

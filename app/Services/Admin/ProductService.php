@@ -154,7 +154,7 @@ class ProductService
     function delete($id)
     {
         $product = $this->find($id);
-        $img_old = $product->image;
+        $img_old = $product->images;
         unlink($img_old);
         return $product->delete();
     }

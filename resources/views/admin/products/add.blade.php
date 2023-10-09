@@ -30,6 +30,7 @@
                     </ul>
                     <!--end::Breadcrumb-->
                 </div>
+                <a href="{{ route('admin.products.index') }}" class="btn btn-primary">Back</a>
             </div>
             <!--end::Toolbar container-->
             {{-- component alert --}}
@@ -113,7 +114,7 @@
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="price" class="form-label"> Giá sản phẩm </label>
-                                    <input type="number" class="form-control" name="price" id="price"
+                                    <input type="text" class="form-control" name="price" id="price"
                                         placeholder="price " value="{{ old('price') }}">
                                     @error('price')
                                         <small class="text-danger">

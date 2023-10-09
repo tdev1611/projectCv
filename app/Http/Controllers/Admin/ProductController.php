@@ -140,7 +140,6 @@ class ProductController extends Controller
                 if (!$product) {
                     continue;
                 }
-
                 $status ? $product->status = $status : null;
                 $features ? $product->features = $features : null;
                 $discount ? $product->discount = $discount : null;
@@ -150,13 +149,12 @@ class ProductController extends Controller
                 $colors ? $this->syncColors($product) : null;
                 $sizes ? $this->syncSizes($product) : null;
 
-
-                $delete_products ? $product->delete() : null;
+                $delete_products ? $this->productService->delete($id) : null;
             }
 
             return response()->json([
                 'success' => true,
-                'message' => 'Update member Successfully'
+                'message' => 'Update products Successfully'
             ]);
         } catch (\Exception $exception) {
             return response()->json([

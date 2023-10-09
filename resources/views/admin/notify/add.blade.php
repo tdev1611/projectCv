@@ -61,7 +61,7 @@
 
                             <div class="mb-3">
                                 <label for="service" class="form-label">Nội dung</label>
-                                <textarea name="content" id="content" cols="30" rows="10" placeholder="content" class="form-control">{{ old('content', isset($notify) ? $notify->content : '') }}</textarea>
+                                <textarea name="content" id="detail" cols="30" rows="10" placeholder="content" class="form-control">{{ old('content', isset($notify) ? $notify->content : '') }}</textarea>
                                 @error('content')
                                     <small class="text-danger">
                                         {{ $message }}

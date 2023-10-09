@@ -1,34 +1,28 @@
 @extends('client.layout')
 @section('content')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
 
     <!-- The Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
+    @if (isset($notify))
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
 
-                    <h4 class="modal-title" style="text-align: center">Thông báo</h4>
+                        <h4 class="modal-title" style="text-align: center">{{ $notify->title }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {!! $notify->content !!}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa officia eligendi perferendis, porro
-                        molestiae ut, ex cum dicta quia est accusamus incidunt aspernatur? Expedita aperiam adipisci fuga
-                        sunt, a minolestiae ut, ex cum dicta quia est accusamus incidunt aspernatur? Expedita aperiam
-                        adipisci fuga sunt, a minoa minolestiae ut, ex cum dicta quia est accusamus incidunt aspernatur?
-                        Expedita aperiam adipisci fuga sunt, a minoa minolestiae ut, ex cum dicta quia est accusamus
-                        incidunt aspernatur? Expedita aperiam adipisci fuga sunt, a minoa minolestiae ut, ex cum dicta quia
-                        est accusamus incidunt aspernatur? Expedita aperiam adipisci fuga sunt, a minolestiae ut, ex cum
-                        dicta quia est accusamus incidunt aspernatur? Expedita aperiam adipisci fuga sunt, a minima..</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+
             </div>
-
         </div>
-    </div>
+    @endif
 
     <div id="main-content-wp" class="home-page clearfix">
         <div class="wp-inner">
@@ -36,15 +30,13 @@
                 <div class="section" id="slider-wp">
 
                     <div class="section-detail">
-                        <div class="item">
-                            <img src="{{ asset('client/public/images/slider-01.png') }}" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="{{ asset('client/public/images/slider-02.png') }}" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="{{ asset('client/public/images/slider-03.png') }}" alt="">
-                        </div>
+                        @if (isset($banners))
+                            @foreach ($banners as $banner)
+                                <div class="item">
+                                    <img src="{{ url($banner->image) }}" alt="">
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 <div class="section" id="support-wp">
@@ -157,8 +149,6 @@
         </div>
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 @endsection
 
 @section('js')

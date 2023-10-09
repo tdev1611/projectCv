@@ -4,21 +4,25 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Services\Client\ProductService;
+use App\Services\Client\WelcomeService;
 
 class WelcomeController extends Controller
 {
     private $product;
-    function __construct(ProductService $productService)
+    private $welcomeService;
+    function __construct(ProductService $productService, WelcomeService $welcomeService)
     {
         $this->product = $productService;
+        $this->welcomeService = $welcomeService;
     }
     function index()
     {
-        $parentCategories = $this->product->getProductByCategory();
 
+        $banners = $this->welcomeService->getBanner();
+        $notify = $this->welcomeService->getNotify();
+        $parentCategories = $this->product->getProductByCategory();
         $productFreatures = $this->product->productFeatures();
-        return view('welcome', compact('productFreatures',  'parentCategories'));
+        return view('welcome', compact('productFreatures',  'parentCategories', 'banners', 'notify'));
     }
 }
