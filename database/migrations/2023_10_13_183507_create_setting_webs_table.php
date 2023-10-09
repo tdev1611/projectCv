@@ -17,7 +17,8 @@ class CreateSettingWebsTable extends Migration
             $table->id();
             $table->string('title')->comment('index');
             $table->text('content')->comment('tags,content');
-            $table->string('image')->comment('image:og');
+            $table->text('desc')->nullable();
+            $table->string('image')->comment('image:og; logo')->nullable();
             $table->tinyInteger('status')->comment('1: hiển thị; 2: ẩn');
             $table->timestamps();
         });

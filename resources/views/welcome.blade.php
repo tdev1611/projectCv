@@ -46,8 +46,8 @@
                                 <div class="thumb">
                                     <img src="{{ asset('client/public/images/icon-1.png') }}">
                                 </div>
-                                <h3 class="title">Miễn phí vận chuyển</h3>
-                                <p class="desc">Tới tận tay khách hàng</p>
+                                <h3 class="title">Miễn phí vận chuyển </h3>
+                                <p class="desc">Với đơn hàng trên $1000</p>
                             </li>
                             <li>
                                 <div class="thumb">
