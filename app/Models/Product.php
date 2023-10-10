@@ -35,6 +35,8 @@ class Product extends Model
         $relatedColors = $this->colors->pluck('name')->toArray();
         $relatedSizes = $this->sizes->pluck('name')->toArray();
         // $relatedCategory = $this->category;
+        $priceSale = $this->price  - ($this->discount * $this->price) / 100;
+
         return [
             'id' => $array['id'],
             'name' => $array['name'],
@@ -42,6 +44,7 @@ class Product extends Model
             'price' => $array['price'],
             'detail' => $array['detail'],
             'discount' => $array['discount'],
+            'sale' => $priceSale,
             // 'category' => $relatedCategory,
             'colors' => $relatedColors,
             'sizes' => $relatedSizes,

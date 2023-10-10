@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Order extends Model
 {
     use HasFactory;
-
+    use Searchable;
 
     protected $fillable = [
         'code',
@@ -20,6 +21,22 @@ class Order extends Model
         'note',
         'status',
     ];
+
+
+    public function searchableAs()
+    {
+        return 'orders_index';
+    }
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        return [
+            'id' => $array['id'],
+            'code' => $array['code'],
+            'total' => $array['total'],
+            'note' => 'Đơn hàng',
+        ];
+    }
 
     function user()
     {
@@ -33,7 +50,4 @@ class Order extends Model
     {
         return $this->belongsTo(ShippingAddress::class, 'info_id');
     }
-    
-  
-
 }
