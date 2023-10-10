@@ -32,15 +32,15 @@ class ProductController extends Controller
         $products = $this->product->queryProducts();
 
         if ($sort === 'name_asc') {
-            $products->orderBy('name', 'asc');
+            $products->oldest('name');
         } elseif ($sort === 'name_desc') {
-            $products->orderBy('name', 'desc');
+            $products->latest('name');
         } elseif ($sort === 'price_desc') {
-            $products->orderBy('price', 'desc');
+            $products->latest('price');
         } elseif ($sort === 'price_asc') {
-            $products->orderBy('price', 'asc');
+            $products->oldest('price');
         } else {
-            $products->orderBy('name', 'asc');
+            $products->oldest('name');
         }
         $products = $products->paginate(12);
 
@@ -86,15 +86,15 @@ class ProductController extends Controller
         $sort = $request->input('sort');
 
         if ($sort === 'name_asc') {
-            $products->oldest('name', 'asc');
+            $products->oldest('name');
         } elseif ($sort === 'name_desc') {
-            $products->latest('name', 'desc');
+            $products->latest('name');
         } elseif ($sort === 'price_desc') {
-            $products->latest('price', 'desc');
+            $products->latest('price');
         } elseif ($sort === 'price_asc') {
-            $products->oldest('price', 'asc');
+            $products->oldest('price');
         } else {
-            $products->oldest('name', 'asc');
+            $products->oldest('name');
         }
         $products = $products->paginate(12);
 
