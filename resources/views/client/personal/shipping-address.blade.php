@@ -12,7 +12,7 @@
     <div class="info">
         <div class="info-left"><span class="info-title">Thông tin nhận hàng</span>
             <div class="styles__StyledAccountInfo-sc-s5c7xj-2 khBVOu">
-                <form id="addressForm"
+                <form id="formRe"
                     action=" {{ isset($address) ? route('client.address.update') : route('client.address.store') }}">
                     <div class="form-info">
 
@@ -94,7 +94,7 @@
     </div>
 @endsection
 
-@section('js')
+{{-- @section('js')
     <script>
         $(document).ready(function() {
             $("#addressForm").submit(function(e) {
@@ -136,4 +136,4 @@
             });
         })
     </script>
-@endsection
+@endsection --}}

@@ -55,4 +55,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(ShippingAddress::class);
     }
+
+
+    function getnew()
+    {
+        return $this->hasOne(GetNew::class,'user_id');
+    }
 }

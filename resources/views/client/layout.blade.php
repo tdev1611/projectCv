@@ -162,10 +162,18 @@
                         </div>
                         <div class="block" id="newfeed">
                             <h3 class="title">Bảng tin</h3>
-                            <p class="desc">Đăng ký với chung tôi để nhận được thông tin ưu đãi sớm nhất</p>
+                            <p class="desc">Đăng ký với chung tôi để nhận được tin tức và mã giảm giá sớm nhất</p>
                             <div id="form-reg">
-                                <form method="POST" action="">
+
+                                <form method="POST" action="{{ route('client.news.store') }}" id="formRe">
+                                    @csrf
                                     <input type="email" name="email" id="email"
+                                        @if (isset(Auth::user()->getnew)) value="{{ Auth::user()->getnew->email }}"
+                                        @elseif (Auth::user())
+                                        value="{{ Auth::user()->email }}"
+                                    @else 
+                                    value="" @endif
+                                        value="{{ Auth::user() ? Auth::user()->email : '' }}"
                                         placeholder="Nhập email tại đây">
                                     <button type="submit" id="sm-reg">Đăng ký</button>
                                 </form>
@@ -238,6 +246,7 @@
         <script src="{{ asset('client/public/js/carousel/owl.carousel.js') }}" type="text/javascript"></script>
         <script src="{{ asset('client/public/js/main.js') }}" type="text/javascript"></script>
         <script src="http://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <x-client.layout.form-get-new />
         @yield('js')
 </body>
 
