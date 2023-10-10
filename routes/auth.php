@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Auth\LoginSocialController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,12 +16,14 @@ use App\Http\Controllers\Auth\UserController;
 
 
 
-
-// Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'CheckLogin', 'CheckAdmin']], function () {
-//     include 'admin.php';
-// });
+// login-social
 
 
+Route::get('/auth/facebook/redirect', [LoginSocialController::class, 'redirectToFacebook'])->name('auth.facebook.redirect');
+Route::get('/auth/facebook/callback', [LoginSocialController::class, 'handleFacebookCallback'])->name('auth.facebook.callback');
+
+
+// auth
 
 Route::get('/register', [UserController::class, 'registerForm'])->name('auth.register.form');
 Route::post('/register', [UserController::class, 'register'])->name('auth.post.register');
