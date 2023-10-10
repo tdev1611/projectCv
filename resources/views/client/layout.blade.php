@@ -24,7 +24,33 @@
 </head>
 
 <body>
+    <style>
+        #search-results {
+            margin-top: 20px;
+            padding: 5px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
 
+        #search-results ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #search-results li {
+            margin: 10px 0;
+        }
+
+        #search-results a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        #search-results a:hover {
+            text-decoration: underline;
+        }
+    </style>
     <div id="site">
         <div id="container">
             <div id="header-wp">
@@ -61,16 +87,18 @@
                         <a href="{{ route('home') }}" title="" id="logo" class="fl-left"><img
                                 src="{{ asset('client/public/images/logo.png') }}" /></a>
                         <div id="search-wp" class="fl-left">
-                            <form method="POST" action="">
-                                <input type="text" name="s" id="s"
+                            <form method="GET" action="{{ route('search') }}">
+                                <input type="text" name="key" id="s"
                                     placeholder="Nhập từ khóa tìm kiếm tại đây!">
                                 <button type="submit" id="sm-s">Tìm kiếm</button>
                             </form>
+
+
                         </div>
                         <div id="action-wp" class="fl-right">
                             <div id="advisory-wp" class="fl-left">
                                 <span class="title">Tư vấn</span>
-                                <span class="phone">0987.654.321</span>
+                                <span class="phone">0346.653.789</span>
                             </div>
                             <div id="btn-respon" class="fl-right"><i class="fa fa-bars" aria-hidden="true"></i></div>
 
@@ -86,8 +114,8 @@
                 <div id="foot-body">
                     <div class="wp-inner clearfix">
                         <div class="block" id="info-company">
-                            <h3 class="title">ISMART</h3>
-                            <p class="desc">ISMART luôn cung cấp luôn là sản phẩm chính hãng có thông tin rõ ràng,
+                            <h3 class="title">TDEV</h3>
+                            <p class="desc">TDEV luôn cung cấp luôn là sản phẩm chính hãng có thông tin rõ ràng,
                                 chính sách ưu đãi cực lớn cho khách hàng có thẻ thành viên.</p>
                             <div id="payment">
                                 <div class="thumb">
@@ -99,13 +127,13 @@
                             <h3 class="title">Thông tin cửa hàng</h3>
                             <ul class="list-item">
                                 <li>
-                                    <p>106 - Trần Bình - Cầu Giấy - Hà Nội</p>
+                                    <p>Cầu Giấy - Hà Nội</p>
                                 </li>
                                 <li>
-                                    <p>0987.654.321 - 0989.989.989</p>
+                                    <p>0346.653.789 -0364.816.444</p>
                                 </li>
                                 <li>
-                                    <p>vshop@gmail.com</p>
+                                    <p>haitd1611@gmail.com</p>
                                 </li>
                             </ul>
                         </div>

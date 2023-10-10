@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\WelcomeController;
+use App\Http\Controllers\Client\SearchController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\OrderController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\Client\PaymentHistoryController;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
+Route::get('/tim-kiem', [SearchController::class, 'search'])->name('search');
 
 
 Route::group(['prefix' => 'thong-tin', 'middleware' => ['auth', 'checkLogin']], function () {
