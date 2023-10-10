@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\WelcomeController;
 use App\Http\Controllers\Client\SearchController;
 use App\Http\Controllers\Client\ProductController;
+use App\Http\Controllers\Client\IntroduceController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\Client\ProfileController;
@@ -27,22 +28,6 @@ Route::get('/tim-kiem', [SearchController::class, 'search'])->name('search');
 Route::post('/dang-ky-nhan-tin-tuc', [SearchController::class, 'newStore'])->name('client.news.store');
 
 
-Route::group(['prefix' => 'thong-tin', 'middleware' => ['auth', 'checkLogin']], function () {
-    // info user
-    Route::get('/', [ProfileController::class, 'index'])->name('client.profile.index');
-    Route::put('/{id}', [ProfileController::class, 'update'])->name('client.profile.update');
-
-
-    Route::get('/dia-chi', [ShippingAddressController::class, 'index'])->name('client.address.index');
-    Route::post('/dia-chi', [ShippingAddressController::class, 'store'])->name('client.address.store');
-    Route::post('/cap-nhat-dia-chi', [ShippingAddressController::class, 'update'])->name('client.address.update');
-
-
-    Route::get('/lich-su-mua-hang', [PaymentHistoryController::class, 'index'])->name('client.history.index');
-    Route::get('/lich-su-mua-hang/{code}', [PaymentHistoryController::class, 'show'])->name('client.history.show');
-});
-
-
 Route::group(['prefix' => 'san-pham'], function () {
     Route::get('/', [ProductController::class, 'index'])->name('client.product.index');
     Route::get('/loc-san-pham', [ProductController::class, 'sort'])->name('client.product.sort');
@@ -57,6 +42,23 @@ Route::group(['prefix' => 'san-pham'], function () {
 
 });
 
+// introduce
+Route::get('/gioi-thieu', [IntroduceController::class, 'index'])->name('client.introduce.index');
+
+
+
+Route::group(['prefix' => 'thong-tin', 'middleware' => ['auth', 'checkLogin']], function () {
+    // info user
+    Route::get('/', [ProfileController::class, 'index'])->name('client.profile.index');
+    Route::put('/{id}', [ProfileController::class, 'update'])->name('client.profile.update');
+
+    Route::get('/dia-chi', [ShippingAddressController::class, 'index'])->name('client.address.index');
+    Route::post('/dia-chi', [ShippingAddressController::class, 'store'])->name('client.address.store');
+    Route::post('/cap-nhat-dia-chi', [ShippingAddressController::class, 'update'])->name('client.address.update');
+
+    Route::get('/lich-su-mua-hang', [PaymentHistoryController::class, 'index'])->name('client.history.index');
+    Route::get('/lich-su-mua-hang/{code}', [PaymentHistoryController::class, 'show'])->name('client.history.show');
+});
 
 
 
@@ -65,8 +67,8 @@ Route::resource('gio-hang', CartController::class, ['as' => 'client']);
 Route::get('/gio-hang-deleteAll', [CartController::class, 'deleleCart'])->name('client.cart.deleleCart');
 Route::get('/gio-hang/delete/{id}', [CartController::class, 'delete'])->name('client.cart.delete');
 
-Route::group(['middleware' => ['auth', 'checkLogin']], function () {
 
+Route::group(['middleware' => ['auth', 'checkLogin']], function () {
     // check out
     Route::get('/thanh-toan', [OrderController::class, 'index'])->name('client.checkout.index');
     Route::post('/thanh-toan', [OrderController::class, 'store'])->name('client.checkout.store');

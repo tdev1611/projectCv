@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\IntroduceController;
 use App\Http\Controllers\Admin\NotifyController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\BannerController;
@@ -18,6 +19,10 @@ Route::get('/', function () {
 // notify
 
 Route::resource('notify', NotifyController::class, ['as' => 'admin']);
+
+// admin.introduces.create
+Route::resource('introduces', IntroduceController::class, ['as' => 'admin']);
+
 // setting
 Route::resource('setting', SettingController::class, ['as' => 'admin']);
 

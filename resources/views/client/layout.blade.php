@@ -70,7 +70,7 @@
                                     <a href="?page=blog" title="">Blog</a>
                                 </li>
                                 <li>
-                                    <a href="?page=detail_blog" title="">Giới thiệu</a>
+                                    <a href="{{ route("client.introduce.index") }}" title="">Giới thiệu</a>
                                 </li>
                                 {{-- <li>
                                     <a href="?page=detail_blog" title="">Liên hệ</a>
@@ -217,7 +217,9 @@
                     <li>
                         <a href="?page=blog" title>Blog</a>
                     </li>
-
+                    <li>
+                        <a href="{{ route("client.introduce.index") }}" title="">Giới thiệu</a>
+                    </li>
                     <li>
                         <a href="{{ route('client.profile.index') }}" title>Cá nhân</a>
                     </li>
