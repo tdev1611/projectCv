@@ -97,6 +97,11 @@ class CartService
     {
         $id = $request->rowId;
         $qty = $request->qty;
+        //find product
+        $product = $this->findProduct($request->id);
+        if ($qty > $product->qty) {
+            throw new \Exception('Product quantity is not enough');
+        }
         $this->sessionCart::update($id, $qty);
         $item = $this->sessionCart::get($id);
         return $item;
@@ -188,18 +193,23 @@ class CartService
 
     function updateItemDb(Request $request)
     {
-        $id = $request->rowId;
+        $rowId = $request->rowId;
         $qty = $request->qty;
-        $cart = $this->findItemByUserId(auth()->user()->id, $id);
+        $cart = $this->findItemByUserId(auth()->user()->id, $rowId);
+        //find product
+        $product = $this->findProduct($request->id);
+        if ($qty > $product->qty) {
+            throw new \Exception('Product quantity is not enough');
+        }
         $cart->update([
             'qty' => $qty,
-            'subtotal' => $qty * $this->findItemByUserId(auth()->user()->id, $id)->price
+            'subtotal' => $qty * $this->findItemByUserId(auth()->user()->id, $rowId)->price
         ]);
         // $this->cart->where('rowId', $id)->where('user_id', auth()->user()->id)->update([
         //     'qty' => $qty,
         //     'subtotal' => $qty * $this->cart->where('rowId', $id)->first()->price
         // ]);
-        return  $cart = $this->findItemByUserId(auth()->user()->id, $id);
+        return  $cart = $this->findItemByUserId(auth()->user()->id, $rowId);
     }
 
     function removeItemDb()

@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Client\CartService;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
+
+ 
 
 class CartController extends Controller
 {
@@ -18,7 +21,8 @@ class CartController extends Controller
     public function index()
     {
         // !Auth::user() ?   $items = $this->cartService->getSessionCart() : $items = $this->cartService->getItemsDb();
-
+       
+      
         if (!Auth::user()) {
             $items = $this->cartService->getSessionCart();
             return view('client.cart.index', compact('items'));

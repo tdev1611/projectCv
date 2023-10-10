@@ -88,7 +88,7 @@
                                         <td>
                                             <input style="width: 35%;" type="number" name="num-order"
                                                 value="{{ $item->qty }}" class="num-order" data-id={{ $item->rowId }}
-                                                min=1>
+                                                min=1 data={{ auth()->user() ? $item->product_id  : $item->id}} >
                                         </td>
                                         <td id="subtotal-{{ $item->rowId }}">
                                             {{ number_format($item->subtotal, 0, '.', ',') }}$</td>
@@ -160,6 +160,8 @@
                 var csrfToken = $('meta[name="csrf-token"]').attr('content');
                 let qty = $(this).val();
                 let rowId = $(this).attr('data-id')
+                let id = $(this).attr('data')
+             
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': csrfToken
@@ -169,6 +171,7 @@
                     type: 'PUT',
                     url: '{{ route('client.gio-hang.update', '') }}/' + rowId,
                     data: {
+                        id: id,
                         rowId: rowId,
                         qty: qty,
                     },
@@ -188,6 +191,7 @@
 
 
                         } else {
+                            // console.log(response);
                             Swal.fire({
                                 icon: 'error',
                                 title: response.error,
@@ -199,7 +203,15 @@
                         }
                     },
                     error: function(error) {
-
+                        console.log(error);
+                        Swal.fire({
+                                icon: 'error',
+                                title: error.responseJSON.message,
+                                showConfirmButton: false,
+                                timer: 2000
+                            }).then((result) => {
+                                location.reload()
+                            })
                     }
                 });
             })

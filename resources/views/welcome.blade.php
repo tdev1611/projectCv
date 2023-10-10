@@ -122,23 +122,7 @@
                         <h3 class="section-title">Sản phẩm bán chạy</h3>
                     </div>
                     <div class="section-detail">
-                        <ul class="list-item">
-                            <li class="clearfix">
-                                <a href="?page=detail_product" title="" class="thumb fl-left">
-                                    <img src="{{ asset('client/public/images/img-pro-13.png') }}" alt="">
-                                </a>
-                                <div class="info fl-right">
-                                    <a href="?page=detail_product" title="" class="product-name">Laptop Asus A540UP
-                                        I5</a>
-                                    <div class="price">
-                                        <span class="new">5.190.000đ</span>
-                                        <span class="old">7.190.000đ</span>
-                                    </div>
-                                    <a href="" title="" class="buy-now">Mua ngay</a>
-                                </div>
-                            </li>
-
-                        </ul>
+                      <x-client.best-sell-products />
                     </div>
                 </div>
                 <div class="section" id="banner-wp">

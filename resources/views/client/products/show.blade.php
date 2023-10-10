@@ -83,7 +83,12 @@
                             </div>
                             <div class="num-product">
                                 <span class="title">Sản phẩm: </span>
+                                @if ($product->qty >0)
                                 <span class="status">Còn :{{ $product->qty }}</span>
+                                @else
+                                <span class="status">Hết hàng</span>
+                                @endif
+                           
                             </div>
                             <div class="num-product " style="display:flex; justify-content: space-between; width:60%">
 

@@ -33,4 +33,7 @@ class Order extends Model
     {
         return $this->belongsTo(ShippingAddress::class, 'info_id');
     }
+    
+  
+
 }

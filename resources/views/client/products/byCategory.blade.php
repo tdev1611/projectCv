@@ -61,12 +61,12 @@
                         <x-client.category />
                     </div>
                 </div>
-                <div class="section" id="filter-product-wp">
+                <div class="section" id="selling-wp">
                     <div class="section-head">
-                        <h3 class="section-title">Bộ lọc</h3>
+                        <h3 class="section-title">Sản phẩm bán chạy</h3>
                     </div>
                     <div class="section-detail">
-                        
+                      <x-client.best-sell-products />
                     </div>
                 </div>
                 <div class="section" id="banner-wp">
