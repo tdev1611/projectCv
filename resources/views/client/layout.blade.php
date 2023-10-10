@@ -72,9 +72,9 @@
                                 <li>
                                     <a href="?page=detail_blog" title="">Giới thiệu</a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="?page=detail_blog" title="">Liên hệ</a>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <a href="{{ route('client.profile.index') }}" title="">Cá nhân</a>
                                 </li>
@@ -135,6 +135,12 @@
                                 <li>
                                     <p>haitd1611@gmail.com</p>
                                 </li>
+                                <li>
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.9242989556406!2d105.78990167451343!3d21.035714780615315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab4818e2d1c5%3A0x98f7ee012655e46e!2zMzUwIMSQLiBD4bqndSBHaeG6pXksIEThu4tjaCBW4buNbmcsIEPhuqd1IEdp4bqleSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1696923004506!5m2!1svi!2s"
+                                        width="600" height="100" style="border:0;" allowfullscreen=""
+                                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </li>
                             </ul>
                         </div>
                         <div class="block menu-ft policy" id="info-shop">
@@ -179,45 +185,35 @@
             <div id="menu-respon-wp">
                 <ul class="" id="main-menu-respon">
                     <li>
-                        <a href="?page=home" title>Trang chủ</a>
+                        <a href="{{ route('home') }}" title>Trang chủ</a>
                     </li>
                     <li>
-                        <a href="?page=category_product" title>Điện thoại</a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="?page=category_product" title="">Iphone</a>
-                            </li>
+                        {{-- <a href="?page=category_product" title>Điện thoại</a> --}}
+                        <x-client.menu-responsive />
+
+                        {{-- <ul class="sub-menu">
+
                             <li>
                                 <a href="?page=category_product" title="">Samsung</a>
                                 <ul class="sub-menu">
                                     <li>
                                         <a href="?page=category_product" title="">Iphone X</a>
                                     </li>
-                                    <li>
-                                        <a href="?page=category_product" title="">Iphone 8</a>
-                                    </li>
+
                                 </ul>
                             </li>
-                            <li>
-                                <a href="?page=category_product" title="">Nokia</a>
-                            </li>
-                        </ul>
+
+                        </ul> --}}
                     </li>
-                    <li>
-                        <a href="?page=category_product" title>Máy tính bảng</a>
-                    </li>
-                    <li>
-                        <a href="?page=category_product" title>Laptop</a>
-                    </li>
-                    <li>
-                        <a href="?page=category_product" title>Đồ dùng sinh hoạt</a>
-                    </li>
+
                     <li>
                         <a href="?page=blog" title>Blog</a>
                     </li>
+
                     <li>
-                        <a href="#" title>Liên hệ</a>
+                        <a href="{{ route('client.profile.index') }}" title>Cá nhân</a>
                     </li>
+
                 </ul>
             </div>
         </div>
