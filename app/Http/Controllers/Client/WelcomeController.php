@@ -21,8 +21,10 @@ class WelcomeController extends Controller
 
         $banners = $this->welcomeService->getBanner();
         $notify = $this->welcomeService->getNotify();
+        $listCode = $this->welcomeService->getCodeDiscount();
+
         $parentCategories = $this->product->getProductByCategory();
         $productFreatures = $this->product->productFeatures();
-        return view('welcome', compact('productFreatures',  'parentCategories', 'banners', 'notify'));
+        return view('welcome', compact('productFreatures',  'parentCategories', 'banners', 'notify','listCode'));
     }
 }

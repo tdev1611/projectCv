@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+
 class CodeDiscount extends Model
 {
-    use HasFactory;   use Searchable;
+    use HasFactory;
+    use Searchable;
     protected  $table = 'code_discounts';
     protected $fillable = [
         'code',
@@ -27,6 +29,7 @@ class CodeDiscount extends Model
             'id' => $array['id'],
             'note' => $array['note'],
             'code' => $array['code'],
+            'key' => 'Mã giảm giá',
         ];
     }
 }

@@ -15,8 +15,17 @@
                     </div>
                     <div class="modal-body">
                         {!! $notify->content !!}
-                        
-                        <p></p>
+                        @php
+                            $temp = 1;
+                        @endphp
+                        @foreach ($listCode as $code)
+                            <p style=" text-align: center;"> <span style="">
+                                    <b> Mã {{ $temp++ }} : {{ $code->code }} </b>
+                                </span> - <span>{{ $code->note }} - <i> Số lượng còn lại</i> {{ $code->qty }}</span>
+
+                            </p>
+                        @endforeach
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -122,7 +131,7 @@
                         <h3 class="section-title">Sản phẩm bán chạy</h3>
                     </div>
                     <div class="section-detail">
-                      <x-client.best-sell-products />
+                        <x-client.best-sell-products />
                     </div>
                 </div>
                 <div class="section" id="banner-wp">
@@ -144,7 +153,7 @@
 
     <script>
         $(document).ready(function() {
-           
+            $("#myModal").modal('show');
             var modalShown = sessionStorage.getItem('modalShown');
 
             if (!modalShown) {
