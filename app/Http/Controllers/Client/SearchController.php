@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\CodeDiscount;
 use App\Models\GetNew;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -19,14 +20,15 @@ class SearchController extends Controller
             return back();
         }
         $products = Product::search($key)->where('status', 1)->orderBy('name', 'asc')->paginate(12);
+        $codes = CodeDiscount::search($key)->where('status', 1)->orderBy('code', 'asc')->paginate(12);
 
         if (auth()->user()) {
 
             $orders =  Order::search($key)->where('user_id', auth()->user()->id)->paginate(12);
-            return view('client.products.search', compact('products', 'orders'));
+            return view('client.products.search', compact('products', 'orders', 'codes'));
         }
 
-        return view('client.products.search', compact('products'));
+        return view('client.products.search', compact('products', 'codes'));
     }
 
 

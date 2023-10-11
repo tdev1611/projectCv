@@ -32,9 +32,20 @@
                         </ul>
 
                     </div>
+                    <div class="section-detail">
+                        <ul class="list-item clearfix" id="list_product">
+                            @foreach ($codes as $code)
+                                <li>
+                                    <p>Mã code : <b><i>{{ $code->code }}</i></b></p>
+                                    <p>Sử dụng : {{ $code->note }}</p>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                    </div>
                 </div>
                 <div class="info">
-                    @if (auth()->user() and $orders->total()>0)
+                    @if (auth()->user() and $orders->total() > 0)
 
                         <div class="info-left"><span class="info-title">Đơn hàng đã đặt</span>
                             <div class="styles__StyledAccountInfo-sc-s5c7xj-2 khBVOu">
