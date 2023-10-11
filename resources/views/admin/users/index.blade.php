@@ -202,11 +202,10 @@
                                                                         style="color:#fff">Sửa</a>
                                                                 </span>
 
-                                                                <span class="badge bg-danger delete_user" id=""
+                                                                <span class="badge bg-danger delete_user"
                                                                     data-id="{{ $user->id }}"
                                                                     data-name="{{ $user->name }}">
-
-                                                                    <a href="#" style="color: #fff">Xóa</a>
+                                                                    <span href="#" style="color: #fff">Xóa</span>
                                                                 </span>
                                                             </div>
                                                         </td>
@@ -250,10 +249,11 @@
                 let deleteItemId = null;
                 let username = null;
                 $(".delete_user").click(function(e) {
+
                     e.preventDefault();
                     deleteItemId = $(this).data("id");
                     username = $(this).attr("data-name");
-
+                    console.log(username);
                     //show modal
                     $("#staticBackdrop").modal("show");
                     $("#dele_name").text(username);
