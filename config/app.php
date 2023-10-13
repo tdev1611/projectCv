@@ -122,7 +122,7 @@ return [
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
- 
+
 
     /*
     |--------------------------------------------------------------------------
@@ -167,7 +167,7 @@ return [
          * Package Service Providers...
          */
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-    
+
         /*
          * Application Service Providers...
          */
@@ -177,6 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        // Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -234,6 +236,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        // 'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

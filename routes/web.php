@@ -22,7 +22,7 @@ use App\Http\Controllers\Client\PaymentHistoryController;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index'])->name('home');
+Route::get('/', [WelcomeController::class, 'index'])->name('home')->middleware('createIp');
 Route::get('/tim-kiem', [SearchController::class, 'search'])->name('search');
 
 Route::post('/dang-ky-nhan-tin-tuc', [SearchController::class, 'newStore'])->name('client.news.store');

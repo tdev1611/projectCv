@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('ip_address')->nullable();
             $table->string('password');
             $table->string('referral_code')->unique()->comment('mã giới thiệu');
             $table->string('referrer_code')->nullable()->comment('mã người giới thiệu');

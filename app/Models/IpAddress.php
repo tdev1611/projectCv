@@ -13,4 +13,9 @@ class IpAddress extends Model
     protected $fillable = [
         'user_id', 'address',
     ];
+
+    function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

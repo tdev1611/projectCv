@@ -23,15 +23,7 @@
                 <span class="menu-icon">
                     {{-- begin::Svg Icon | path: icons/duotune/communication/com011.svg --}}
                     <span class="svg-icon svg-icon-2">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path opacity="0.3"
-                                d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19Z"
-                                fill="currentColor" />
-                            <path
-                                d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z"
-                                fill="currentColor" />
-                        </svg>
+                        <i class="fa-solid fa-gear fa-fade"></i>
                     </span>
                     <!--end::Svg Icon-->
                 </span>
@@ -70,15 +62,7 @@
                 <span class="menu-icon">
                     {{-- begin::Svg Icon | path: icons/duotune/communication/com011.svg --}}
                     <span class="svg-icon svg-icon-2">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path opacity="0.3"
-                                d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19Z"
-                                fill="currentColor" />
-                            <path
-                                d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z"
-                                fill="currentColor" />
-                        </svg>
+                        <i class="fa-solid fa-gear fa-fade"></i>
                     </span>
                     <!--end::Svg Icon-->
                 </span>
@@ -171,15 +155,7 @@
                 <span class="menu-icon">
                     {{-- begin::Svg Icon | path: icons/duotune/communication/com011.svg --}}
                     <span class="svg-icon svg-icon-2">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path opacity="0.3"
-                                d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19Z"
-                                fill="currentColor" />
-                            <path
-                                d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z"
-                                fill="currentColor" />
-                        </svg>
+                        <i class="fa-solid fa-wrench"></i>
                     </span>
                     <!--end::Svg Icon-->
                 </span>
@@ -233,7 +209,7 @@
                 <span class="menu-icon">
                     {{-- begin::Svg Icon | path: icons/duotune/communication/com011.svg --}}
                     <span class="svg-icon svg-icon-2">
-                        <i class="fa-brands fa-product-hunt"></i>
+                        <i class="fa-solid fa-user"></i>
                     </span>
                     <!--end::Svg Icon-->
                 </span>
@@ -339,7 +315,7 @@
                 <span class="menu-icon">
                     {{-- begin::Svg Icon | path: icons/duotune/communication/com011.svg --}}
                     <span class="svg-icon svg-icon-2">
-                        <i class="fa-brands fa-product-hunt"></i>
+                        <i class="fa-solid fa-droplet"></i>
                     </span>
                     <!--end::Svg Icon-->
                 </span>
@@ -389,7 +365,7 @@
                 <span class="menu-icon">
                     {{-- begin::Svg Icon | path: icons/duotune/communication/com011.svg --}}
                     <span class="svg-icon svg-icon-2">
-                        <i class="fa-brands fa-product-hunt"></i>
+                        <i class="fa-solid fa-tag"></i>
                     </span>
                     <!--end::Svg Icon-->
                 </span>
@@ -443,7 +419,7 @@
                 <span class="menu-icon">
                     {{-- begin::Svg Icon | path: icons/duotune/communication/com011.svg --}}
                     <span class="svg-icon svg-icon-2">
-                        <i class="fa-brands fa-product-hunt"></i>
+                        <i class="fa-solid fa-cart-shopping"></i>
                     </span>
                     <!--end::Svg Icon-->
                 </span>
@@ -479,6 +455,48 @@
         </div>
         <!--end:DEpossti item-->
         <!-- module -->
+        <!--begin:DEpossti-->
+        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+            <!--begin:Menu link-->
+            <span class="menu-link">
+                <span class="menu-icon">
+                    {{-- begin::Svg Icon | path: icons/duotune/communication/com011.svg --}}
+                    <span class="svg-icon svg-icon-2">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </span>
+                    <!--end::Svg Icon-->
+                </span>
+                <span class="menu-title">
+                    <h5 style="color:gray">Ip Adresss</h5>
+                </span>
+                <span class="menu-arrow"></span>
+            </span>
+            <!--end:Menu link-->
+
+            <!--end:Menu sub-->
+            <!--begin:Menu sub-->
+            <div class="menu-sub menu-sub-accordion">
+
+                <!--begin:Menu item-->
+                <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link" href="{{ route('admin.ip-adress.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Danh sách </span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <!--begin:Menu item-->
+
+
+
+                <!--end:Menu item-->
+            </div>
+            <!--end:Menu sub-->
+        </div>
+        <!--end:DEpossti item-->
     </div>
     <!--end::Menu-->
 </div>

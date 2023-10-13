@@ -15,8 +15,8 @@ class CreateIpAddressesTable extends Migration
     {
         Schema::create('ip_addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('address')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->ipAddress('ip')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

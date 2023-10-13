@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\DiscountCodeController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\IpController;
 
 Route::get('/', function () {
 })->name('admin.home');
@@ -69,3 +70,8 @@ Route::get('discount-code/delete/{id}', [DiscountCodeController::class, 'delete'
 
 Route::resource('orders', OrderController::class, ['as' => 'admin']);
 Route::get('orders/delete/{id}', [OrderController::class, 'delete'])->name('admin.orders.delete');
+
+// admin.ip-adress.index
+
+Route::resource('ip-adress', IpController::class, ['as' => 'admin']);
+Route::get('ip-adress/delete/{id}', [IpController::class, 'delete'])->name('admin.ip-adress.delete');

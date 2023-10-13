@@ -67,10 +67,10 @@
                                     <a href="{{ route('client.product.index') }}" title="Sản phẩm">Sản phẩm</a>
                                 </li>
                                 <li>
-                                    <a href="?page=blog" title="">Blog</a>
+                                    {{-- <a href="?page=blog" title="">Blog</a> --}}
                                 </li>
                                 <li>
-                                    <a href="{{ route("client.introduce.index") }}" title="">Giới thiệu</a>
+                                    <a href="{{ route('client.introduce.index') }}" title="">Giới thiệu</a>
                                 </li>
                                 {{-- <li>
                                     <a href="?page=detail_blog" title="">Liên hệ</a>
@@ -218,7 +218,7 @@
                         <a href="?page=blog" title>Blog</a>
                     </li>
                     <li>
-                        <a href="{{ route("client.introduce.index") }}" title="">Giới thiệu</a>
+                        <a href="{{ route('client.introduce.index') }}" title="">Giới thiệu</a>
                     </li>
                     <li>
                         <a href="{{ route('client.profile.index') }}" title>Cá nhân</a>
@@ -250,6 +250,8 @@
         <script src="http://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <x-client.layout.form-get-new />
         @yield('js')
+
+       
 </body>
 
 </html>
