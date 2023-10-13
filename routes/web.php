@@ -78,11 +78,11 @@ Route::group(['middleware' => ['auth', 'checkLogin']], function () {
 
 
 
-// Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'CheckLogin', 'CheckAdmin']], function () {
-//     include 'admin.php';
-// });
-
-
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'checkLogin', 'checkRole']], function () {
     include 'admin.php';
 });
+
+
+// Route::group(['prefix' => 'admin'], function () {
+//     include 'admin.php';
+// });

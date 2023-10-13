@@ -113,6 +113,7 @@ class IntroduceController extends Controller
                 'success' => true,
                 'message' => 'Updated Successfully'
             ];
+            return response()->json($response);
         } catch (\Exception $e) {
             $response =  [
                 'success' => false,

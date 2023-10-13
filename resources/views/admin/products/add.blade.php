@@ -115,7 +115,7 @@
                                 <div class="mb-3 col-md-6">
                                     <label for="price" class="form-label"> Giá sản phẩm </label>
                                     <input type="text" class="form-control" name="price" id="price"
-                                        placeholder="price " value="{{ old('price') }}">
+                                        placeholder="price " value="{{ old('price',1) }}">
                                     @error('price')
                                         <small class="text-danger">
                                             {{ $message }}

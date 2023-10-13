@@ -34,16 +34,16 @@ class Product extends Model
         $array = $this->toArray();
         $relatedColors = $this->colors->pluck('name')->toArray();
         $relatedSizes = $this->sizes->pluck('name')->toArray();
-        // $relatedCategory = $this->category;
-        $priceSale = $this->price  - ($this->discount * $this->price) / 100;
 
+        $priceSale = $this->price  - ($this->discount * $this->price) / 100;
+        $discount = $this->discount > 0;
         return [
             'id' => $array['id'],
             'name' => $array['name'],
             'desc' => $array['desc'],
             'price' => $array['price'],
             'detail' => $array['detail'],
-            'discount' => $array['discount'],
+            'discount' => $discount,
             'sale' => $priceSale,
             // 'category' => $relatedCategory,
             'colors' => $relatedColors,

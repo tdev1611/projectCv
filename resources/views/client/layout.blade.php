@@ -19,7 +19,7 @@
     <link href="{{ asset('client/public/responsive.css') }}" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <link rel="stylesheet" href="{{ url('resources/css/app.css') }}">
 </head>
 

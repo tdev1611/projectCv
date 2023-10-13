@@ -4,7 +4,7 @@ namespace App\Services\Admin;
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\File;
 
 class ProductService
 {
@@ -158,6 +158,12 @@ class ProductService
         $product = $this->find($id);
         $img_old = $product->images;
         unlink($img_old);
+        $list_imgs = json_decode($product->list_image, true);
+        foreach ($list_imgs as $img) {
+            if (File::exists($img)) {
+                File::delete($img);
+            }
+        }
         return $product->delete();
     }
 }

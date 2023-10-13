@@ -103,7 +103,7 @@
                 @foreach ($parentCategories as $category)
                     <div class="section" id="list-product-wp">
                         <div class="section-head">
-                            <h3 class="section-title">{{ $category->name }}</h3>
+                            <h3 class="section-title"><a href="{{ route('client.product.byCategory',$category->slug) }}">{{ $category->name }}</a></h3>
                         </div>
                         <div class="section-detail">
                             <ul class="list-item clearfix" id="list_product">
@@ -153,7 +153,7 @@
 
     <script>
         $(document).ready(function() {
-            $("#myModal").modal('show');
+            // $("#myModal").modal('show');
             var modalShown = sessionStorage.getItem('modalShown');
 
             if (!modalShown) {
@@ -161,7 +161,7 @@
                     $("#myModal").modal('show');
                     sessionStorage.setItem('modalShown', 'true');
 
-                }, 200);
+                }, 60);
             }
         });
     </script>
