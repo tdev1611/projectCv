@@ -9,7 +9,7 @@
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        Mã giảm giá </h1>
+                        <a href="{{ route('admin.orders.index') }}">Đơn hàng</a> </h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -24,7 +24,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">Danh sách Mã giảm giá </li>
+                        <li class="breadcrumb-item text-muted">Danh sách đơn hàng </li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -44,7 +44,21 @@
                         <div class="card">
 
                             <div class="card-body">
-                                <h4 class="card-title">Danh sách Mã giảm giá </h4>
+
+                                <h4 class="card-title">Danh sách đơn hàng </h4>
+                                <div class="mb-3">
+                                    <div class="btn btn-success">
+                                        <a href="{{ request()->fullUrlwithQuery(['status' => 'success']) }}" style="color: #fff"> Đơn hàng thành công</a>
+                                    </div>
+                                    <div class="btn btn-warning">
+                                        <a href="{{ request()->fullUrlwithQuery(['status' => 'processing']) }}" style="color: #fff"> Đơn hàng chờ xử lý</a>
+
+                                    </div>
+                                    <div class="btn btn-dark">
+                                        <a href="{{ request()->fullUrlwithQuery(['status' => 'failed']) }}" style="color: #fff"> Đơn hàng thất bại</a>
+
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
                                     <table id="myTable"
                                         class="table table-hover table-row-dashed table-row-gray-300 gy-7 table-striped">

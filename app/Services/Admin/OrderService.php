@@ -17,6 +17,22 @@ class OrderService
     {
         return $this->order->oldest()->with('discount_code', 'user')->get();
     }
+
+    function getOrdersSuccess()
+    {
+        return $this->order->oldest()->with('discount_code', 'user')->where('status', 2)->get();
+    }
+    function getOrdersProcess()
+    {
+        return $this->order->oldest()->with('discount_code', 'user')->where('status', 1)->get();
+    }
+    function getOrdersFailed()
+    {
+        return $this->order->oldest()->with('discount_code', 'user')->where('status', 3)->get();
+    }
+
+
+
     function find($id)
     {
         $order =  $this->order->find($id);

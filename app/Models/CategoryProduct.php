@@ -18,6 +18,25 @@ class CategoryProduct extends Model
 
     ];
 
+
+    // admin 
+
+    function productsAdmin()
+    {
+        return $this->hasMany(Product::class)->where('status', 1)->limit(12);
+    }
+
+    function getProductsBycateAdmin()
+    {
+        $products = $this->productsAdmin;
+        foreach ($this->children as $child) {
+            $products = $products->merge($child->getProductsBycateAdmin());
+        }
+        return $products;
+    }
+
+
+    // client
     public function children()
     {
         return $this->hasMany(CategoryProduct::class, 'cat_parent')->where('status', 1);

@@ -15,9 +15,18 @@ class OrderController extends Controller
         $this->orderService = $orderService;
     }
 
-    function index()
+    function index(Request $request)
     {
         $orders = $this->orderService->getAll();
+        $status = $request->status;
+        if ($status == 'success') {
+            $orders = $this->orderService->getOrdersSuccess();
+        } elseif ($status == 'processing') {
+            $orders = $this->orderService->getOrdersProcess();
+        } elseif ($status == 'failed') {
+            $orders = $this->orderService->getOrdersFailed();
+        }
+
         return view('admin.orders.index', compact('orders'));
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\IntroduceController;
 use App\Http\Controllers\Admin\NotifyController;
@@ -14,8 +15,11 @@ use App\Http\Controllers\Admin\DiscountCodeController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\IpController;
 
-Route::get('/', function () {
-})->name('admin.home');
+
+
+
+Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
+
 
 // notify
 
