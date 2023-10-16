@@ -77,7 +77,7 @@ class OrderController extends Controller
 
             $order =  $this->orderService->create($data);
 
-            // Mail::to($user->address->email)->send(new OrderSuccess($order));
+            Mail::to($user->address->email)->send(new OrderSuccess($order));
             // destroy Items
             $this->orderService->destroyCartDb();
 
